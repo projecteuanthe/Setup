@@ -14,3 +14,6 @@
 [submodule "setup-tools/depends/barretenberg"]
 	path = setup-tools/depends/barretenberg
 	url = https://github.com/AztecProtocol/barretenberg
+[submodule "setup-tools/phase2-bn254"]
+	path = setup-tools/phase2-bn254
+	url = git@github.com:briangu33/phase2-bn254.git

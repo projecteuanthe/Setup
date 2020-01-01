@@ -39,7 +39,7 @@ export class Downloader extends EventEmitter {
   }
 
   public isDownloaded(transcript: Transcript) {
-    const filename = `../setup_db/transcript${transcript.num}.dat`;
+    const filename = `../setup_db/old/params.params`;
     if (existsSync(filename)) {
       const stat = statSync(filename);
       if (stat.size === transcript.size && transcript.downloaded === transcript.size) {
@@ -63,7 +63,7 @@ export class Downloader extends EventEmitter {
   }
 
   private async downloadTranscript(transcript: Transcript) {
-    const filename = `../setup_db/transcript${transcript.num}.dat`;
+    const filename = `../setup_db/old/params.params`;
     if (this.isDownloaded(transcript)) {
       return;
     }

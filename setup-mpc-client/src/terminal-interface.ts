@@ -21,6 +21,7 @@ export class TerminalInterface {
     this.term.clear();
     this.term.hideCursor();
     this.term.cyan('AZTEC Trusted Setup Multi Party Computation\n\n');
+    this.term.white('MODIFIED FOR PHASE2 CEREMONY\n');
     this.renderStatus();
     this.renderList();
   }
@@ -38,6 +39,7 @@ export class TerminalInterface {
   private renderStatus() {
     this.term.moveTo(0, 2);
     this.term.eraseLine();
+    this.term.white('MODIFIED FOR PHASE2 CEREMONY\n');
 
     if (!this.state) {
       this.term.white(this.error || 'Awaiting update from server...');

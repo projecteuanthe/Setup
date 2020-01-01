@@ -20,9 +20,9 @@ RUN apt update && \
   apt update && \
   apt install -y nodejs yarn && \
   apt clean
-COPY --from=0 /usr/src/setup-tools/setup /usr/src/setup-tools/setup
-COPY --from=0 /usr/src/setup-tools/setup-fast /usr/src/setup-tools/setup-fast
-RUN mkdir /usr/src/setup_db
+COPY --from=0 /usr/src/setup-tools/new /usr/src/setup-tools/new
+COPY --from=0 /usr/src/setup-tools/contribute /usr/src/setup-tools/contribute
+RUN mkdir -p /usr/src/setup_db/new && mkdir -p /usr/src/setup_db/old
 WORKDIR /usr/src/setup-mpc-common
 COPY --from=1 /usr/src/setup-mpc-common .
 RUN yarn link

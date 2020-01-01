@@ -39,7 +39,7 @@ export class Uploader extends EventEmitter {
   }
 
   private async uploadTranscriptWithRetry(num: number) {
-    const filename = `../setup_db/transcript${num}_out.dat`;
+    const filename = `../setup_db/new/params.params`;
     while (!this.cancelled) {
       try {
         console.error(`Uploading: `, filename);

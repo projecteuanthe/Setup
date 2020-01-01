@@ -2,15 +2,9 @@ FROM aztec/setup-tools-build
 FROM ubuntu:latest
 WORKDIR /usr/src/setup-tools
 COPY --from=0 \
-  /usr/src/setup-tools/build/setup \
-  /usr/src/setup-tools/build/setup-fast \
-  /usr/src/setup-tools/new \
-  /usr/src/setup-tools/contribute \
-  /usr/src/setup-tools/build/seal \
-  /usr/src/setup-tools/build/verify \
-  /usr/src/setup-tools/build/compute_generator_polynomial \
-  /usr/src/setup-tools/build/prep_range_data \
-  /usr/src/setup-tools/build/compute_range_polynomial \
-  /usr/src/setup-tools/build/print_point \
-  /usr/src/setup-tools/build/generate_h \
+  /usr/src/setup-tools/phase2-bn254/phase2/target/debug/new \
+  /usr/src/setup-tools/phase2-bn254/phase2/target/debug/contribute \
+  /usr/src/setup-tools/phase2-bn254/phase2/target/debug/verify_contribution \
+  /usr/src/setup-tools/phase2-bn254/phase2/target/debug/beacon \
+  /usr/src/setup-tools/phase2-bn254/phase2/target/debug/export_keys \
   ./

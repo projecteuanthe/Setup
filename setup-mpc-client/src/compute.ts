@@ -1,11 +1,60 @@
 import { ChildProcessWithoutNullStreams, spawn } from 'child_process';
+import { EventEmitter } from 'events';
 import readline from 'readline';
 import { cloneParticipant, MemoryFifo, MpcServer, MpcState, Participant, Transcript } from 'setup-mpc-common';
 import { Downloader } from './downloader';
 import { Uploader } from './uploader';
 
+// wrapper object for new and contribute processes
+class ComputeProcess extends EventEmitter {
+  private process?: ChildProcessWithoutNullStreams;
+
+  constructor() {
+    super();
+  }
+
+  public startNew() {
+    const binPath = '../setup-tools/new';
+    console.error(`Computing with: ${binPath}`);
+    const process = spawn(binPath, ['mimc_circuit.json', '../setup_db/new/params.params']);
+    this.process = process;
+    this.setupListeners();
+  }
+
+  public startContribute() {
+    const binPath = '../setup-tools/contribute';
+    console.error(`Computing with: ${binPath}`);
+    const process = spawn(binPath, ['../setup_db/old/params.params', 'asdf', '../setup_db/new/params.params']);
+    this.process = process;
+    this.setupListeners();
+  }
+
+  private setupListeners() {
+    if (this.process) {
+      readline
+        .createInterface({
+          input: this.process.stdout,
+          terminal: false,
+        })
+        .on('line', input => { this.emit('line', input) });
+
+      this.process.stderr.on('data', data => { this.emit('stderr', data) });
+
+      this.process.on('close', code => { this.emit('close', code) });
+
+      this.process.on('error', (...args) => { this.emit('error', ...args) });
+    }
+  }
+
+  public kill(...args: any[]) {
+    if (this.process) {
+      this.process.kill(...args);
+    }
+  }
+}
+
 export class Compute {
-  private setupProc?: ChildProcessWithoutNullStreams;
+  private setupProc?: ComputeProcess;
   private computeQueue: MemoryFifo<string> = new MemoryFifo();
   private downloader: Downloader;
   private uploader: Uploader;
@@ -34,7 +83,15 @@ export class Compute {
 
     await this.populateQueues();
 
+    /*
     await Promise.all([this.runDownloader(), this.compute(), this.runUploader()]).catch(err => {
+      console.error(err);
+      this.cancel();
+      throw err;
+    });
+    */
+
+    await Promise.all([this.runDownloader(), this.compute()]).catch(err => {
       console.error(err);
       this.cancel();
       throw err;
@@ -88,15 +145,14 @@ export class Compute {
         transcript.uploaded = 0;
       });
 
-      const { numG1Points, numG2Points, pointsPerTranscript } = this.state;
-      this.computeQueue.put(`create ${numG1Points} ${numG2Points} ${pointsPerTranscript}`);
+      this.computeQueue.put(`create`);
       this.computeQueue.end();
     }
   }
 
   private async runDownloader() {
     this.downloader.on('downloaded', (transcript: Transcript) => {
-      this.computeQueue.put(`process ${transcript.num}`);
+      this.computeQueue.put(`process`);
     });
 
     this.downloader.on('progress', (transcript: Transcript, transferred: number) => {
@@ -118,24 +174,17 @@ export class Compute {
 
   private async compute() {
     return new Promise(async (resolve, reject) => {
-      this.myState.fast = !!process.env.FAST;
-      const binPath = process.env.FAST ? '../setup-tools/setup-fast' : '../setup-tools/setup';
-      console.error(`Computing with: ${binPath}`);
-      const setup = spawn(binPath, ['../setup_db']);
-      this.setupProc = setup;
+      this.myState.fast = false;
+      const setupProcess = new ComputeProcess();
+      this.setupProc = setupProcess;
 
-      readline
-        .createInterface({
-          input: setup.stdout,
-          terminal: false,
-        })
-        .on('line', this.handleSetupOutput);
+      setupProcess.on('line', this.handleSetupOutput);
 
-      setup.stderr.on('data', data => {
+      setupProcess.on('stderr', data => {
         console.error(data.toString());
       });
 
-      setup.on('close', code => {
+      setupProcess.on('close', code => {
         this.setupProc = undefined;
         this.uploader.end();
         if (code === 0) {
@@ -146,17 +195,20 @@ export class Compute {
         }
       });
 
-      setup.on('error', reject);
+      setupProcess.on('error', reject);
 
       console.error(`Compute starting...`);
       while (true) {
         const cmd = await this.computeQueue.get();
         if (!cmd) {
-          setup.stdin.end();
           break;
         }
         console.error(`Setup command: ${cmd}`);
-        setup.stdin.write(`${cmd}\n`);
+        if (cmd === 'create') {
+          setupProcess.startNew();
+        } else if (cmd === 'process') {
+          setupProcess.startContribute();
+        }
       }
     });
   }
@@ -170,22 +222,17 @@ export class Compute {
     const cmd = params.shift()!;
     switch (cmd) {
       case 'creating': {
-        for (const transcriptDef of params) {
-          const [num, size] = transcriptDef.split(':');
-          const transcript = this.myState.transcripts[+num];
-          transcript.size = +size;
-          transcript.downloaded = +size;
-        }
+        const transcript = this.myState.transcripts[0];
+        transcript.size = 100;
+        transcript.downloaded = 100;
         break;
       }
       case 'wrote': {
-        this.uploader.put(+params[0]);
-        break;
-      }
-      case 'progress': {
-        this.myState.computeProgress = +params[0];
+        this.uploader.put(0);
+        this.myState.computeProgress = 100;
         break;
       }
     }
   };
 }
+

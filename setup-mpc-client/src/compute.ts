@@ -83,15 +83,7 @@ export class Compute {
 
     await this.populateQueues();
 
-    /*
     await Promise.all([this.runDownloader(), this.compute(), this.runUploader()]).catch(err => {
-      console.error(err);
-      this.cancel();
-      throw err;
-    });
-    */
-
-    await Promise.all([this.runDownloader(), this.compute()]).catch(err => {
       console.error(err);
       this.cancel();
       throw err;

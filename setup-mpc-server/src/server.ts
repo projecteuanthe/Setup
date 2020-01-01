@@ -27,6 +27,7 @@ export class Server implements MpcServer {
   private publisher?: Publisher;
   private rangeProofPublisher?: RangeProofPublisher;
   private store!: TranscriptStore;
+  private phase2Done = false;
 
   constructor(
     private storeFactory: TranscriptStoreFactory,
@@ -313,6 +314,7 @@ export class Server implements MpcServer {
     try {
       await advanceState(this.state, this.store, this.verifier, moment());
 
+      /*
       if (this.state.ceremonyState === 'SEALING' && !this.sealer) {
         this.launchSealer();
       }
@@ -324,6 +326,15 @@ export class Server implements MpcServer {
       if (this.state.ceremonyState === 'RANGE_PROOFS' && !this.rangeProofPublisher) {
         this.launchRangeProofsPublisher();
       }
+      */
+      if (this.state.ceremonyState === 'SEALING' && !this.phase2Done) {
+        this.state.ceremonyState = 'COMPLETE';
+        this.state.completedAt = moment();
+        this.state.sequence += 1;
+        this.state.statusSequence = this.state.sequence;
+        console.log('Completed');
+      }
+
     } catch (err) {
       console.log(err);
     } finally {

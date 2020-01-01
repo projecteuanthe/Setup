@@ -9,14 +9,14 @@ import { DiskStateStore } from './state-store';
 import { defaultState } from './state/default-state';
 import { DiskTranscriptStoreFactory } from './transcript-store';
 
-const { PORT = 80, STORE_PATH = './store', INFURA_API_KEY = '', JOB_SERVER_HOST = 'job-server' } = process.env;
+const { PORT = 80, STORE_PATH = './store', INFURA_API_KEY = 'fe576c8bab174752bd0d963c89d5d7a2', JOB_SERVER_HOST = 'job-server' } = process.env;
 
 async function main() {
   const shutdown = async () => process.exit(0);
   process.once('SIGINT', shutdown);
   process.once('SIGTERM', shutdown);
 
-  const adminAddress = Address.fromString('0x3a9b2101bff555793b85493b5171451fa00124c8');
+  const adminAddress = Address.fromString('0x1aA18F5b595d87CC2C66d7b93367d8beabE203bB');
   const participantSelectorFactory = new ParticipantSelectorFactory(adminAddress, INFURA_API_KEY);
   const latestBlock = await participantSelectorFactory.getCurrentBlockHeight('ropsten');
   const defaults = defaultState(latestBlock);

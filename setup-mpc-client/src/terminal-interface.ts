@@ -20,8 +20,8 @@ export class TerminalInterface {
   private render() {
     this.term.clear();
     this.term.hideCursor();
-    this.term.cyan('AZTEC Trusted Setup Multi Party Computation\n\n');
-    this.term.white('MODIFIED FOR PHASE2 CEREMONY\n');
+    this.term.cyan('AZTEC Trusted Setup Multi Party Computation\n');
+    this.term.white('MODIFIED FOR PHASE2 CEREMONY\n\n');
     this.renderStatus();
     this.renderList();
   }

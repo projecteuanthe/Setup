@@ -94,7 +94,7 @@ async function getRunningParticipantsTranscripts(state: MpcState, store: Transcr
     .find(p => p.state === 'COMPLETE');
 
   if (!lastCompletedParticipant) {
-    return Array(Math.ceil(Math.max(state.numG1Points, state.numG2Points) / state.pointsPerTranscript))
+    return Array(1)
       .fill(0)
       .map((_, num) => ({
         num,

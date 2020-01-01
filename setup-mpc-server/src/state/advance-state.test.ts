@@ -130,14 +130,7 @@ describe('advance state', () => {
         downloaded: 0,
         uploaded: 0,
         state: 'WAITING',
-      },
-      {
-        num: 1,
-        size: 0,
-        downloaded: 0,
-        uploaded: 0,
-        state: 'WAITING',
-      },
+      }
     ]);
   });
 

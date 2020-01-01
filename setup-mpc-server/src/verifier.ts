@@ -78,50 +78,37 @@ export class Verifier {
   }
 
   private async verifyTranscript(address: Address, transcriptNumber: number, transcriptPath: string) {
-    // Argument 0 is total number of G1 points in all transcripts.
-    // Argument 1 is total number of G2 points in all transcripts.
-    // Argument 2 is the total points per transcript.
-    // Argument 3 is the expected transcript number.
-    // Argument 4 is the transcript to verify.
-    // Argument 5 is the 0th transcript of the sequence.
-    const args = [
-      this.numG1Points.toString(),
-      this.numG2Points.toString(),
-      this.pointsPerTranscript.toString(),
-      transcriptNumber.toString(),
-      transcriptPath,
-      this.store.getUnverifiedTranscriptPath(address, 0),
-    ];
-
-    // Argument 6 is...
-    if (transcriptNumber === 0) {
-      // The previous participants 0th transcript, or nothing if no previous participant.
-      if (this.lastCompleteAddress) {
-        args.push(this.store.getVerifiedTranscriptPath(this.lastCompleteAddress, 0));
-      }
-    } else {
-      // The previous transcript in the sequence.
-      args.push(this.store.getUnverifiedTranscriptPath(address, transcriptNumber - 1));
-    }
-
     console.log(`Verifiying transcript ${transcriptNumber}...`);
     return new Promise<boolean>(resolve => {
-      const binPath = '../setup-tools/verify';
-      const verify = spawn(binPath, args);
-      this.proc = verify;
+      if (this.lastCompleteAddress) {
+        // call verify_contribution if this is not the first transcript
+        const args = [
+          'mimc_circuit.json',
+          this.store.getVerifiedTranscriptPath(this.lastCompleteAddress, 0),
+          this.store.getUnverifiedTranscriptPath(address, 0)
+        ];
+        const binPath = '../setup-tools/verify_contribution';
+        const verify = spawn(binPath, args);
+        this.proc = verify;
 
-      verify.stdout.on('data', data => {
-        console.log(data.toString());
-      });
+        verify.stdout.on('data', data => {
+          console.log(data.toString());
+        });
 
-      verify.stderr.on('data', data => {
-        console.log(data.toString());
-      });
+        verify.stderr.on('data', data => {
+          console.log(data.toString());
+        });
 
-      verify.on('close', code => {
+        verify.on('close', code => {
+          this.proc = undefined;
+          resolve(code === 0);
+        });
+      } else {
+        // otherwise, just accept
+        // TODO: first participant should add in their own randomness
         this.proc = undefined;
-        resolve(code === 0);
-      });
+        resolve(true);
+      }
     });
   }
 }

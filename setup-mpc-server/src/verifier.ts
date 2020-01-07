@@ -83,7 +83,7 @@ export class Verifier {
       if (this.lastCompleteAddress) {
         // call verify_contribution if this is not the first transcript
         const args = [
-          'mimc_circuit.json',
+          process.env.SMALL ? 'circuit_small.json' : 'circuit.json',
           this.store.getVerifiedTranscriptPath(this.lastCompleteAddress, 0),
           this.store.getUnverifiedTranscriptPath(address, 0)
         ];

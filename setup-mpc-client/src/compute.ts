@@ -7,7 +7,7 @@ import { Uploader } from './uploader';
 
 // wrapper object for new and contribute processes
 class ComputeProcess extends EventEmitter {
-  private process?: ChildProcessWithoutNullStreams;
+  private proc?: ChildProcessWithoutNullStreams;
 
   constructor() {
     super();
@@ -16,39 +16,39 @@ class ComputeProcess extends EventEmitter {
   public startNew() {
     const binPath = '../setup-tools/new';
     console.error(`Computing with: ${binPath}`);
-    const process = spawn(binPath, ['mimc_circuit.json', '../setup_db/new/params.params']);
-    this.process = process;
+    const proc = spawn(binPath, [process.env.SMALL ? 'circuit_small.json' : 'circuit.json', '../setup_db/new/params.params']);
+    this.proc = proc;
     this.setupListeners();
   }
 
   public startContribute() {
     const binPath = '../setup-tools/contribute';
     console.error(`Computing with: ${binPath}`);
-    const process = spawn(binPath, ['../setup_db/old/params.params', 'asdf', '../setup_db/new/params.params']);
-    this.process = process;
+    const proc = spawn(binPath, ['../setup_db/old/params.params', 'asdf', '../setup_db/new/params.params', '100']);
+    this.proc = proc;
     this.setupListeners();
   }
 
   private setupListeners() {
-    if (this.process) {
+    if (this.proc) {
       readline
         .createInterface({
-          input: this.process.stdout,
+          input: this.proc.stdout,
           terminal: false,
         })
         .on('line', input => { this.emit('line', input) });
 
-      this.process.stderr.on('data', data => { this.emit('stderr', data) });
+      this.proc.stderr.on('data', data => { this.emit('stderr', data) });
 
-      this.process.on('close', code => { this.emit('close', code) });
+      this.proc.on('close', code => { this.emit('close', code) });
 
-      this.process.on('error', (...args) => { this.emit('error', ...args) });
+      this.proc.on('error', (...args) => { this.emit('error', ...args) });
     }
   }
 
   public kill(...args: any[]) {
-    if (this.process) {
-      this.process.kill(...args);
+    if (this.proc) {
+      this.proc.kill(...args);
     }
   }
 }
@@ -217,6 +217,12 @@ export class Compute {
         const transcript = this.myState.transcripts[0];
         transcript.size = 100;
         transcript.downloaded = 100;
+        break;
+      }
+      case 'progress': {
+        const computedPoints = +params[0];
+        const totalPoints = +params[1];
+        this.myState.computeProgress += 100 * computedPoints / totalPoints;
         break;
       }
       case 'wrote': {

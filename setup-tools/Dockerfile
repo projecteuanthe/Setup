@@ -14,4 +14,13 @@ RUN cd phase2-bn254/phase2 \
     && cargo build --bin verify_contribution \
     && cargo build --bin beacon \
     && cargo build --bin export_keys
-COPY . .
+
+FROM ubuntu:latest
+WORKDIR /usr/src/setup-tools
+COPY --from=0 \
+  /usr/src/setup-tools/phase2-bn254/phase2/target/debug/new \
+  /usr/src/setup-tools/phase2-bn254/phase2/target/debug/contribute \
+  /usr/src/setup-tools/phase2-bn254/phase2/target/debug/verify_contribution \
+  /usr/src/setup-tools/phase2-bn254/phase2/target/debug/beacon \
+  /usr/src/setup-tools/phase2-bn254/phase2/target/debug/export_keys \
+  ./

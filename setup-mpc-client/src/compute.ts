@@ -12,7 +12,7 @@ class ComputeProcess extends EventEmitter {
   constructor() {
     super();
   }
-
+  
   public startNew() {
     const binPath = '../setup-tools/new';
     console.error(`Computing with: ${binPath}`);
@@ -131,6 +131,8 @@ export class Compute {
       this.downloader.end();
     } else {
       console.error('We are the first participant.');
+      console.error(this.myState.transcripts.length, this.myState.transcripts); 
+      // my guess is that the file that this transcript points to needs to be split into k buffers to be sent back
       this.downloader.end();
 
       this.myState.transcripts.forEach(transcript => {

@@ -1,0 +1,2349 @@
+[33mcommit 650e58d469c43faa0b3d3aadd0f93f67e8308e3a[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Merge: a90b0b1 74ed01a
+Author: Divide-By-0 <aayushg@mit.edu>
+Date:   Wed Jan 8 12:45:16 2020 -0500
+
+    Merge branch 'master' of https://github.com/briangu33/Setup
+
+[33mcommit a90b0b12a0d5faf5fcdff8b4f1fb7a139c2c539f[m
+Author: Divide-By-0 <aayushg@mit.edu>
+Date:   Wed Jan 8 12:45:11 2020 -0500
+
+    random changes
+
+[33mcommit fd486257e3a56e95ff39e0709b1e1b45747447fa[m
+Author: Divide-By-0 <aayushg@mit.edu>
+Date:   Wed Jan 8 00:49:10 2020 -0500
+
+    added hot reload testing sh file
+
+[33mcommit 74ed01ace65deecbe3eb6dd55417fc2b3f3cf9d0[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Brian Gu <briangu33@gmail.com>
+Date:   Tue Jan 7 02:43:02 2020 -0500
+
+    modified phase2 binaries?
+
+[33mcommit 72aee38545d044a936e20fc74bba5463bfddf513[m
+Author: Brian Gu <briangu33@gmail.com>
+Date:   Tue Jan 7 02:42:42 2020 -0500
+
+    read progress indicators from compute stdout
+
+[33mcommit 1834ae9ae4049213626d87f879cfe26fc95c7695[m
+Author: Brian Gu <briangu33@gmail.com>
+Date:   Tue Jan 7 02:42:20 2020 -0500
+
+    server verifier to check for SMALL env var
+
+[33mcommit e90e00a481bab389cc585cfd3e8ac878fac9c880[m
+Author: Brian Gu <briangu33@gmail.com>
+Date:   Tue Jan 7 02:41:39 2020 -0500
+
+    add various test circuits
+
+[33mcommit 1832daffec989f3852ec225ed0145aa9e20002f4[m
+Author: Brian Gu <briangu33@gmail.com>
+Date:   Mon Jan 6 00:35:38 2020 -0500
+
+    remove old setup-tools
+
+[33mcommit ff8fc6e1675844b9c1379414ab371604b4fb00fb[m
+Author: Brian Gu <briangu33@gmail.com>
+Date:   Wed Jan 1 12:42:23 2020 -0800
+
+    phase2 MPC works
+
+[33mcommit 219b1c4dfd1cefac1f10046a35cfaf8b73667b7c[m
+Author: Brian Gu <briangu33@gmail.com>
+Date:   Tue Dec 31 17:01:42 2019 -0800
+
+    first client generates initial parameters
+
+[33mcommit 3d2f4850905fe75d3e7b4768a97afd0152823f22[m
+Author: Brian Gu <briangu33@gmail.com>
+Date:   Tue Dec 31 15:59:44 2019 -0800
+
+    add phase2-bn254 submodule
+
+[33mcommit 2908de3c2f16db479842d3c616147630452405bb[m
+Author: Brian Gu <briangu33@gmail.com>
+Date:   Tue Dec 31 15:59:06 2019 -0800
+
+    gitignore
+
+[33mcommit 8e7f5b0c6bf6e82abe7a287b66d27fea3e113690[m
+Author: Brian Gu <briangu33@gmail.com>
+Date:   Tue Dec 31 15:50:11 2019 -0800
+
+    remove copypasted phase2-bn254
+
+[33mcommit 5fecff96ee80cdbd82ab927c6a269484e30f0bcb[m
+Author: Brian Gu <briangu33@gmail.com>
+Date:   Tue Dec 31 15:46:57 2019 -0800
+
+    add phase2 binaries to setup-tools
+
+[33mcommit b9fafe07ffd1187dbb0ec763c957cc42295ae351[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Dec 26 11:52:51 2019 +0000
+
+    Set retry delay to 10s when writing results to server.
+
+[33mcommit 0e6601ae818a28992dbcb808a10febd38217c4cf[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Dec 17 16:14:57 2019 +0000
+
+    Fix unquoted string for ceremony name with space. Add spot fleet.
+
+[33mcommit 9295fbc6df552dc410e979c3792dcf3fb8e95105[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Nov 20 11:34:06 2019 +0000
+
+    Set latestBlock to -1 to permanently disable participant selector.
+
+[33mcommit 2ebd77bbd9420a7836b379e40a7aef1ef81dd179[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Nov 19 17:21:34 2019 +0000
+
+    Try to fix build.
+
+[33mcommit 45bae0e47c31320e31f95d1f1bef29bcef3876c2[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Nov 19 17:16:33 2019 +0000
+
+    Try to fix build.
+
+[33mcommit 3de9da6c5a62f992d8992607ce4535399d0f4ab6[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Nov 19 16:49:33 2019 +0000
+
+    Fix tests.
+
+[33mcommit 9c8f4c82170841c353f8b41c0054c5d47b89e78a[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Nov 19 16:19:46 2019 +0000
+
+    Add ability to flush waiting participants and stop the blockchain monitor in prep for institution week.
+
+[33mcommit 300ecb4b13e1dc4a854a7cfe59472e41a5806a5b[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Nov 19 14:43:31 2019 +0000
+
+    Build test3.
+
+[33mcommit d0ff40d993024ca91e155fe51992043bef49f722[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Nov 19 14:32:09 2019 +0000
+
+    Build test.
+
+[33mcommit 341620f51311adf15cf8311d1cbc936973754929[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Nov 19 14:28:08 2019 +0000
+
+    Build test.
+
+[33mcommit 20aefb326bbdd0450946a7ab7aad70e853ff40b5[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Nov 19 13:21:30 2019 +0000
+
+    Build build image.
+
+[33mcommit c960fb0d09a1bf48561ecfdc777c37b2dc20b7dd[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Nov 19 13:17:51 2019 +0000
+
+    Build build image.
+
+[33mcommit 1f022d7b7f46666a77c3f81e534c5a8abf679613[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Nov 19 11:31:43 2019 +0000
+
+    Force build-image first.
+
+[33mcommit b67e85607fa8c955e4b9c89cd53cc47af2782ff5[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Nov 19 11:19:10 2019 +0000
+
+    Rename build-image in mbt.
+
+[33mcommit 4396cc32c988a56dd888c9844da601179188dc27[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Nov 19 11:17:31 2019 +0000
+
+    Move build-image from internal.
+
+[33mcommit 7b7c7d979922b1d327defba39df9d30c767dcf6f[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Nov 19 09:58:13 2019 +0000
+
+    Remove single upload check.
+
+[33mcommit bb06a5faf985eaef66e9586e0e6608d5bcc19458[m
+Merge: 3f497fe 45248e3
+Author: Arnaud Schenk <arnaud@creditmint.io>
+Date:   Mon Nov 18 13:52:25 2019 +0000
+
+    Merge pull request #21 from amiller/patch-1
+    
+    Update README.md
+
+[33mcommit 3f497fe527408366cdcf13e11078e84559b8782a[m
+Author: Arnaud Schenk <arnaud@creditmint.io>
+Date:   Wed Nov 13 19:06:04 2019 +0000
+
+    add enterprise. subdomain
+
+[33mcommit 45248e384068ed8c6e3bf4a9aae050ae8eeedd40[m
+Author: Andrew Miller <socrates1024@gmail.com>
+Date:   Wed Nov 13 08:47:34 2019 +0000
+
+    Update README.md
+
+[33mcommit ebd09373cfb04af6a619bfbc0973736d96a81782[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Nov 8 14:31:03 2019 -0500
+
+    Boxes instead of polylines on map for visibility.
+
+[33mcommit d0267ff2590d5073a0e1f8f42b3d786f73853e0a[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Nov 6 12:04:39 2019 +0000
+
+    Fix terminal link.
+
+[33mcommit 4d66ff3f93f67099d32b086b16da1c6a69703b22[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Nov 4 12:13:58 2019 +0000
+
+    Embellish upload error info.
+
+[33mcommit 1d2dec05c8801e0d013ff6d205793c915c914de1[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Nov 4 11:54:32 2019 +0000
+
+    Disable upload timeout.
+
+[33mcommit 6e87d49658224daa0e9f2f2d0c5a80217a306c00[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Nov 3 18:43:37 2019 +0000
+
+    Fix terminal render bug where participant can't see their own line after completion
+
+[33mcommit 8ebc3bb7e6bef2ac14608c5d391299b5c957d8a6[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Nov 1 21:32:20 2019 +0000
+
+    Links between global and terminal.
+
+[33mcommit 6101fb08251336aa4fcca4abc58b87acee4cdc66[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Nov 1 21:28:56 2019 +0000
+
+    Webterm screen width.
+
+[33mcommit a4d6145349b7e4ddb91330979343dcfec3b7b1c6[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Nov 1 20:46:46 2019 +0000
+
+    Widen webterm.
+
+[33mcommit 7f650efb218411dfa9187dc06bbf1b18e0631fd8[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Oct 31 14:06:29 2019 +0000
+
+    Add additional info to timeout alerts.
+
+[33mcommit 2e5a19a9294a1578fbbf7ebc32dd4eb0150c15d2[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 30 23:08:39 2019 +0000
+
+    Emojis.
+
+[33mcommit 1c0f1cc84379153a77ca01d2cf4e6f18c5be5488[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 30 22:46:58 2019 +0000
+
+    Alert work.
+
+[33mcommit e0f17d7e988955c8b0d1859acfb38b0b98fe5a59[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 30 19:15:23 2019 +0000
+
+    Add setup-mpc-alerts.
+
+[33mcommit 1bb5681c0b929e7723804ee7188c0aaa87503503[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 30 17:06:24 2019 +0000
+
+    Only dom on high pixel ratios.
+
+[33mcommit 55ee589ce8c841289b6cb781772e9b7db1c0579c[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 30 16:06:03 2019 +0000
+
+    Only dom on high pixel ratios.
+
+[33mcommit 1fa810c76480f6ff8f197c7eaf87d61eadbceeea[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 30 15:55:46 2019 +0000
+
+    Only dom on high pixel ratios.
+
+[33mcommit cec86509bcb4e70e1ee550a7c2be73fcf14c6de9[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 30 15:50:05 2019 +0000
+
+    Fix job-server deploy.
+
+[33mcommit 4d4cc0d091ce39828f611c8c9627167ca8304607[m
+Merge: 3bbbbbf 348388f
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 30 15:29:26 2019 +0000
+
+    Merge pull request #20 from AztecProtocol/cl/cipull
+    
+    Cl/cipull
+
+[33mcommit 348388f0412e70cc2676c00add3a5d8293baab8c[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 30 14:53:22 2019 +0000
+
+    Switch webterm to dom renderer.
+
+[33mcommit 79c6213ec494620896037bc6d4e7c7a9bd5e8b89[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 30 13:32:26 2019 +0000
+
+    Only pull remote images if we haven't rebuilt in this run.
+
+[33mcommit 1175e990f4ba1968f69990b765f7a96e015fe4c0[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 30 11:47:25 2019 +0000
+
+    Only reset lastVerified if its set.
+
+[33mcommit 7d2112ea7c8d2a121a5be034a85f6175215dead3[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Oct 29 06:32:53 2019 +0000
+
+    Pull latest deps.
+
+[33mcommit 3bbbbbf81a720c65e37dc3ca3ba52a9942a4588f[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 30 11:38:37 2019 +0000
+
+    Ensure complete markers updated when shifting to standby.
+
+[33mcommit d88ddb2fa36c883703514e203b33f3bdda5720ed[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Oct 29 14:06:19 2019 +0000
+
+    Increase webterm width.
+
+[33mcommit d87c1395876bb4ce6dbc6619b33c0d4687aaaf4c[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Oct 29 13:09:18 2019 +0000
+
+    Order COMPLETE participants before WAITING.
+
+[33mcommit 97a8fcb301e28d614190af2b5de50649c6103c04[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Oct 29 13:06:18 2019 +0000
+
+    Order COMPLETE participants before WAITING.
+
+[33mcommit 29e6f251abd76fe3725fb115cf84e5d60f79ed97[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Oct 29 12:02:14 2019 +0000
+
+    Double verification rate.
+
+[33mcommit f3f09b3f2e7c9cb4d53f63922369157564aab2cd[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Oct 29 07:35:05 2019 +0000
+
+    Allow resetting of invalidated participants.
+
+[33mcommit 1f08bcd7f0c7acf6e0c3f898f36320635dd60640[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Oct 28 19:44:28 2019 +0000
+
+    Disable layer caching until I figure out if we can have a single cache...
+
+[33mcommit ed6dccd5dafc94bd521984c8ebceb9b1bd631389[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Oct 28 17:40:21 2019 +0000
+
+    Include priority on right, always.
+
+[33mcommit 0ad848e52faa316e69285de5bff40071385ba340[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Oct 28 13:28:42 2019 +0000
+
+    Fix minor terminal render bug. Remove startTime adjustment when bumping timeout.
+
+[33mcommit 4fcf07ec456aeae77ec8c0e1a5ecca91b4c90a03[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Oct 27 21:11:34 2019 +0000
+
+    Fix double tap on mobile.
+
+[33mcommit 3bd03a9f4412c722952fce0042aa55106c83284a[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Oct 27 16:26:37 2019 +0000
+
+    Double tap on mobile should work.
+
+[33mcommit 021c3023e99677e2cff76ef1bb926d4c63812a36[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Oct 27 14:43:12 2019 +0000
+
+    Allow zooming out on globe view.
+
+[33mcommit e783f86a93e4ae360531e20f72e1e079e0ff87cb[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Oct 27 13:42:25 2019 +0000
+
+    Upgrade web3x version to get HttpProvider that doesn't crash...
+
+[33mcommit 17652aad79f89b65df3a12c18795339339a6fa48[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Oct 27 13:31:46 2019 +0000
+
+    Upgrade web3x version to get HttpProvider that doesn't crash...
+
+[33mcommit 9f9c7d22ebbce9f160f80ccce24198b0f3a934bc[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Oct 27 11:37:54 2019 +0000
+
+    Bump build class.
+
+[33mcommit 2e1b5e239a62be8d7d53bbb0b905cfe2848961c0[m
+Merge: 0d14b8f 1a1349f
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Oct 27 11:33:13 2019 +0000
+
+    Merge pull request #19 from AztecProtocol/cl/rerunable
+    
+    Cl/rerunable
+
+[33mcommit 1a1349f2b35a8139d0de517956f57d32e0e3af88[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Oct 26 21:44:05 2019 +0100
+
+    Pausing functionality. When paused, will not progress to next participant.
+
+[33mcommit e2501ec43447c36179c13726eeb38cac52cff23f[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Oct 26 15:50:50 2019 +0100
+
+    Protect against double runs of client. Allow clients to restart from beginning.
+
+[33mcommit 0d14b8f9c0685e7309bde1bb36e26cb2db474c0b[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Oct 26 20:52:42 2019 +0100
+
+    Fix wrong subnets.
+
+[33mcommit dbc798334524505b2eaead369a775f4addfd4220[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Oct 26 20:21:10 2019 +0100
+
+    webterm rebirth
+
+[33mcommit b9c616264108f96ba1275259b35ea68228a3857f[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Oct 25 15:25:51 2019 +0100
+
+    Remove query params from globe as they stop cesium rendering...
+
+[33mcommit 87272fdd215185350c0069c9f5b2f2fa065c8521[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Oct 25 11:33:05 2019 +0100
+
+    Server console.error to console.log. Bit additional logging around transcript uploads. Manifest will include invalidated participants separately.
+
+[33mcommit ef8a379dd802d64cc9f490565d6c8603521c1f46[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Oct 24 22:51:41 2019 +0100
+
+    Unset FAST flag in the event of compute failure on client. Little UI arrow is purple in FAST mode.
+
+[33mcommit 104267e37cd7e52f7a1bda372288570b114f8470[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Oct 24 17:48:18 2019 +0100
+
+    End ceremony correctly if participant times out.
+
+[33mcommit 6de143c84754e8688135e10b5ed8bfd9cef81acc[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Oct 24 12:06:49 2019 +0100
+
+    Enable docker layer caching in ci.
+
+[33mcommit 1a00ee32ecbcf33e3306b277e5135f26c91416e8[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Oct 24 11:34:02 2019 +0100
+
+    Reset lastVerified time when adjusting timeouts or restarting server.
+
+[33mcommit 249a36cf4fa23edfcf54158c417a4166b384ef5a[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Oct 24 11:03:47 2019 +0100
+
+    Reset lastVerified time when adjusting timeouts or restarting server.
+
+[33mcommit 1473531abd8c1c9c7022f88dc0b3868857d39401[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Oct 24 10:54:34 2019 +0100
+
+    Reset lastVerified time when adjusting timeouts or restarting server.
+
+[33mcommit e942df950a4343480ab9017a984d9137fd49d60f[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 23 19:08:42 2019 +0100
+
+    Use latest barretenberg.
+
+[33mcommit a9e4e2de9028ce383d6432277e3edb3808b1de41[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 23 18:08:42 2019 +0100
+
+    Fix terminal client render bug.
+
+[33mcommit 6978a615fda096b8aaa128144fdcd39146b2a3f0[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 23 17:08:46 2019 +0100
+
+    Reset start time when adjusting participants timeout.
+
+[33mcommit 2050b3d4781fef2d5413bcf568fe511603c28534[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 23 16:19:45 2019 +0100
+
+    Allow participant specific timeouts.
+
+[33mcommit d211d38cee3ab17067a0294991074812b18fef5e[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 23 14:25:33 2019 +0100
+
+    setup returns failure code if it fails to write buffer to disk.
+
+[33mcommit faf806f6592f180cd930e789adeac2f514610e47[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 23 13:39:45 2019 +0100
+
+    Improve timeout info on globe.
+
+[33mcommit 933a529395f64e42ea0cb011f81c39c1bb24839d[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 23 11:53:44 2019 +0100
+
+    Super fast option for MPC. Few other little tweaks.
+
+[33mcommit 2f56e250aaf863c28968a3410a0e0935336c42f6[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Oct 21 14:41:49 2019 +0100
+
+    Fix tier3 participants getting dropped at selection time.
+
+[33mcommit 254138bf9b8de924ac1ee8a76e0f2a91a6c33d06[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Oct 21 12:33:34 2019 +0100
+
+    Disable entity selection in globe.
+
+[33mcommit febb676fc3440e03be1f16934d98c27245735340[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Oct 21 12:06:33 2019 +0100
+
+    Patch transcript uploaded check.
+
+[33mcommit 6cbadf304691c6570e3ce99ce281621250a4c40a[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Oct 21 00:32:39 2019 +0100
+
+    Don't shift to SEALING state while a participant is still running.
+
+[33mcommit 1a8130f658af7e4895409528cf4eaa28f1f381f4[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Oct 20 23:11:48 2019 +0100
+
+    Fix min max.
+
+[33mcommit 26c6625ad15c58fa17b0c8be24183b8ed857d5b5[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Oct 20 23:03:20 2019 +0100
+
+    Fixes.
+
+[33mcommit 0be134123c4330333aee8998a5524514f62d4328[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Oct 20 22:32:02 2019 +0100
+
+    Post processing detects ceremony changes properly.
+
+[33mcommit 73b3d3157964d3627d82a88dfbfcf5618038486c[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Oct 20 21:50:04 2019 +0100
+
+    Fix queue status in client.
+
+[33mcommit 768626941e495c7b48de820e5c659a801699639b[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Oct 20 21:25:50 2019 +0100
+
+    Tweaks and fixes.
+
+[33mcommit e40c435babbe0363b7cd95b05d646c7d3a4be7cd[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Oct 20 08:09:46 2019 +0100
+
+    Remove client side timeout.
+
+[33mcommit b232e9dda2722244158067ff514433575a14bcdd[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Oct 20 00:59:56 2019 +0100
+
+    Few small fixes.
+
+[33mcommit 07b7f7bc9e4a20a0341c789a322b228fe92efe00[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Oct 19 19:15:05 2019 +0100
+
+    Front loading of tier 2 support. Tier 3 only on blockchain. Improve client error feedback, background mode.
+
+[33mcommit 6320be8edff4be50031e8297c3f0924944cc7386[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Oct 19 00:30:45 2019 +0100
+
+    Fix publish path.
+
+[33mcommit 30b68937a4c9c9ab1d6e7b14dae7c2f5d3ee164d[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Oct 18 23:14:18 2019 +0100
+
+    Reduce job server timeout. Fix publish path on globe.
+
+[33mcommit 5ce2e060ef22c45186222eabc1d9551f98b08cab[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Oct 18 20:46:12 2019 +0100
+
+    Set timeout on server and client for file uploads.
+
+[33mcommit 6fc90d29bda3780e4d7602ae075bd5d20bfc6ba3[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Oct 18 20:41:29 2019 +0100
+
+    Set timeout on server for file uploads.
+
+[33mcommit f63cd63721899643b4c052653e68abe9b96876f4[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Oct 18 18:36:39 2019 +0100
+
+    Disable layer caching. Boo.
+
+[33mcommit 7009529afc9212008c948846353808a3ccdb2d97[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Oct 18 18:33:34 2019 +0100
+
+    More barretenberg. Fix off by 1 in post processing. Coordination server does full prep for post process.
+
+[33mcommit 9cd3eccf692ee07a381d2a7ec444955ca61253a2[m
+Merge: 4fe15ed 9e5df4d
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 16 23:51:15 2019 +0100
+
+    Merge pull request #18 from AztecProtocol/cl/barretenberg
+    
+    Cl/barretenberg
+
+[33mcommit 9e5df4d7d9883d3457104371936d734752a48001[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 16 22:34:53 2019 +0100
+
+    Fix montgomery form. Padding of hex strings.
+
+[33mcommit ef3dcadb7fdbc82a2fbbc905a2fa08e6d595200e[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 16 18:01:55 2019 +0100
+
+    Tidy
+
+[33mcommit c0102ce48f49baa6ebea40ce2740c7365c8ed075[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 16 17:20:10 2019 +0100
+
+    Write out correct data.
+
+[33mcommit 4fe15ed4254b74403e2bfd76b74ef517c12c75dd[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 16 16:42:02 2019 +0100
+
+    PP pull from correct region.
+
+[33mcommit 1cf93d6b104e035562d8a551c956b45ca2ca7824[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 16 16:26:36 2019 +0100
+
+    Login to correct ECR region.
+
+[33mcommit ed94f167bd587761ac330604ab3e8cee70cce1b6[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 16 16:24:24 2019 +0100
+
+    Login to correct ECR region.
+
+[33mcommit 5707de4a8bf502c02cd2ca7200d8f279ac67180f[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 16 16:14:41 2019 +0100
+
+    Fix build.
+
+[33mcommit e31c4393699cc91ba943e5ccde53d26f96818aa6[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 16 14:53:04 2019 +0100
+
+    Accept new data.
+
+[33mcommit 3a757e7f916fe5476525919d3b8c684dc7e6e6be[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 16 14:09:27 2019 +0100
+
+    Prep range data work for Barretenberg.
+
+[33mcommit 72712790f8495fd1441befb354994655176229ab[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 16 14:55:55 2019 +0100
+
+    Ohio only private, not internet access, privatelink fixes. Publish post process to Ohio.
+
+[33mcommit b226c0ef1f9d6dca0a452d1dc8886351c980e107[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Oct 14 11:25:04 2019 +0100
+
+    Script to create spot fleet request.
+
+[33mcommit a2417115b82ce91cd2a99aa0b8e726e69f9ca569[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Oct 11 20:33:22 2019 +0100
+
+    Configurable batch size for post processing.
+
+[33mcommit 80f48a5d8bf25e2f09ceaab050e9c1cef439ce4e[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Oct 11 12:32:26 2019 +0100
+
+    Job server has configurable expiration times. Bump to 4000s for current testing.
+
+[33mcommit f5a0291ecefa303032e343375ab50bc46dfa5a49[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Oct 10 16:55:35 2019 +0100
+
+    Use aws cli for copying from s3 bucket so permissions work.
+
+[33mcommit eaf0b0b2c7259592a6e8c9b3b14027eb1964324d[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Oct 10 16:22:26 2019 +0100
+
+    Fix ci scripts.
+
+[33mcommit 280f0f5d8cd9fd30b074d9a990466c695ff27dd4[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Oct 10 15:38:49 2019 +0100
+
+    Make pp fail if not able to dload data.
+
+[33mcommit 6350a3e0efd68cc0501b0fc4c0dfbe8def340450[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Oct 10 15:30:44 2019 +0100
+
+    Fix working directory. Don't auto deploy changes to pp.
+
+[33mcommit f23ef563cc8f2ded7bd9837a361188ce2c2ce307[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Oct 10 14:23:42 2019 +0100
+
+    Post processing efforts.
+
+[33mcommit 8007006399c4204ced9bcf75403fd70f69c3a62f[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 9 14:48:12 2019 +0100
+
+    On linux, set thread affinity for setup and seal.
+
+[33mcommit a4b3eeda6169b386926e12dfcab8358ba9f4d109[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 9 14:16:46 2019 +0100
+
+    Compute H failed. Bump machine spec.
+
+[33mcommit 808fcaf04c57e4c50e40f777d400dcd448a24986[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Oct 8 21:23:57 2019 +0100
+
+    Bind jobs to individual cpus.
+
+[33mcommit 555c35317169eb48044270421a2e8a2cc4ef8bd3[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Oct 8 16:59:40 2019 +0100
+
+    Random sleep on post processing.
+
+[33mcommit 1ce24256937dcfdfa2abdc1997db869a7ade1037[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Oct 8 15:04:54 2019 +0100
+
+    Terraform to run post process in Ohio. Select participants tier 0 order fix.
+
+[33mcommit 7efc12f2d8845c567415139e86afe4d3af75fbc0[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Oct 4 13:11:10 2019 +0100
+
+    CRS g2 to t2
+
+[33mcommit c383a3e6e949737619a3c7658d6cd562f462dc1a[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Oct 3 18:06:50 2019 +0100
+
+    Output points in affine coordinates.
+
+[33mcommit a7020e114603195b418a3e681c80f9830ad4c061[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Oct 3 17:26:06 2019 +0100
+
+    Fix stars.
+
+[33mcommit 45e464cb8a1f06b5ff8051f7e023c0c878352dd1[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Oct 3 16:57:23 2019 +0100
+
+    Fix batching bugs. Map lat lon to 1 decimal place for stars.
+
+[33mcommit d22deed606c5149892b3606bcae5cb91f5336464[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Oct 3 15:03:23 2019 +0100
+
+    Fix newlines.
+
+[33mcommit e38533996c7aa2517f32d847cdcd306036d9cbbd[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Oct 3 14:00:51 2019 +0100
+
+    Compute H at end of sealing step, include in manifest.
+
+[33mcommit d6e2cd65245f1e7a7d8234470864d50bca1e82b4[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 2 15:46:46 2019 +0100
+
+    Configure job server host.
+
+[33mcommit 1adefcc8e7ce1695d7b361091d4219e82c8d9dd7[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Oct 2 14:48:58 2019 +0100
+
+    Build deploy post process.
+
+[33mcommit 448808d05043901122349f0093dd077aee80ae21[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Oct 1 22:33:34 2019 +0100
+
+    Fixes.
+
+[33mcommit 5dfb86518c317b43cce072a9aea9b6567666b7e3[m
+Merge: 2f3de80 46c05bb
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Oct 1 21:14:01 2019 +0100
+
+    Merge pull request #17 from AztecProtocol/cl/pp_rebirth
+    
+    Cl/pp rebirth
+
+[33mcommit 46c05bb1a14999c21f2917c0c711398df98904c8[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Oct 1 20:55:35 2019 +0100
+
+    Always use latest time in globe (seemed to drift using cesium)
+
+[33mcommit 9d5ee05c4392aed5868f930106c2dafb78d8ff7c[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Oct 1 20:47:28 2019 +0100
+
+    Less noisy post process logs.
+
+[33mcommit dc304e03f5a181209fb74d131192112b6bb89b9f[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Oct 1 20:38:14 2019 +0100
+
+    Allow configuration of which Eth network.
+
+[33mcommit 1336fdc6306f15bf63a19df0b87dcf1d5e943f1f[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Oct 1 15:52:07 2019 +0100
+
+    Add selectBlock to manifest.
+
+[33mcommit 89d76ecad68f85ae059bc3255cda434f795b3032[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Oct 1 14:50:34 2019 +0100
+
+    Add missing vars to PatchState.
+
+[33mcommit 212b626bf5264c7e38d1fd3694c48a819d2e1adb[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Oct 1 14:36:38 2019 +0100
+
+    Range proof vars to manifest.
+
+[33mcommit 2f3de80d32c3c255865bb1991120511fed30c2fb[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Oct 1 13:48:50 2019 +0100
+
+    Add project access token (can be public).
+
+[33mcommit c21f547db1d8933d7bb76eb2570cc5195750c437[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Oct 1 13:47:51 2019 +0100
+
+    Add rangeProofsPerFile.
+
+[33mcommit 0445b373b50cb251fee6c8b206c790b00ef9f6fe[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Oct 1 11:33:00 2019 +0100
+
+    Launch range proof publisher as final step.
+
+[33mcommit 074216af92436a407d4d099c5a47a51d8596fda1[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Sep 30 14:06:13 2019 +0100
+
+    Fix build.
+
+[33mcommit c21a887a858ca475498cbf0005332de024a66908[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Sep 30 14:03:36 2019 +0100
+
+    Fix bad rebase.
+
+[33mcommit c65ac328d00d0f962ba402e2aa8496a8ebee0d57[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Sep 26 17:59:57 2019 +0100
+
+    Working towards MPC server coordinating and publishing post-processing.
+
+[33mcommit 56941387ecf7153b0a1898d3abcd9f356bca8aab[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Sep 25 18:13:50 2019 +0100
+
+    PP task work.
+
+[33mcommit e6c7defd89ef73c8169c246ba8b8d9ad1b6ca344[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Sep 25 14:14:31 2019 +0100
+
+    Request bb sigs from server returns correct format.
+
+[33mcommit 40e58f51468dcaab4e71a3897fdf81b0893165cd[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Sep 20 10:58:00 2019 +0100
+
+    All setup-tools build on OS X
+
+[33mcommit 9275f2a4983beefd54ff4ea9948b7c88e1067f7c[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Sep 30 12:10:01 2019 +0100
+
+    Fix tests.
+
+[33mcommit ec5838e8c3d674b30be15d9c9749f676b27785c1[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Sep 30 12:04:35 2019 +0100
+
+    Allow saving and restoring named states.
+
+[33mcommit fad26a6460d7c1f9604873e3eb7435f29e9ec1c2[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Sep 27 17:26:56 2019 +0100
+
+    Allow HTTP, it's safe for us.
+
+[33mcommit eede1ddd3e47b446f917f23c6ba2a8e0fed4ec70[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Sep 27 15:59:45 2019 +0100
+
+    We now support tier 0, not just participant 0. Helps with the Tezos stuff.
+
+[33mcommit 9931e2360036c6b6e7c9d95b0cf03fb6026962cc[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Sep 27 14:15:58 2019 +0100
+
+    Fixes.
+
+[33mcommit a8dc0259c9c38760c99ec210f926f0cc72bffe1c[m
+Merge: e5a2eaa a1b0ca7
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Sep 27 12:30:11 2019 +0100
+
+    Merge pull request #15 from AztecProtocol/cl/airgapped
+    
+    Cl/airgapped
+
+[33mcommit a1b0ca7c90d1e1d6530c9829b201dceb29f4cc65[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Sep 27 11:49:03 2019 +0100
+
+    Picked code out of 2043a8e6db1b03c75afb9ef88615cb0f151bdf0d
+
+[33mcommit 699c2fd5c8bc92b6d3b0528f0f1ab25f2fa7fe7e[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Tue Sep 3 14:56:25 2019 +0100
+
+    streaming: added check that points are on curve
+
+[33mcommit decd9756949826c116e4a96bffd08c692c090aff[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Sep 27 11:44:03 2019 +0100
+
+    Initial
+
+[33mcommit e5a2eaa7b2300a71de75b847956bc733880b2407[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Sep 24 20:41:47 2019 +0100
+
+    Setup and verifier will abort in unlikley event of RNG producing 0 or 1.
+
+[33mcommit 61e1993fa68d7d783f1ae9c618f8e4e3ed2358e5[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Tue Sep 24 14:48:34 2019 +0100
+
+    fixed generator to accomodate polynomial degrees that are not powers of 2
+
+[33mcommit 30f66d6e0fa2565e0dc5c3fc0e92abcc7da16ac7[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Tue Sep 24 12:01:42 2019 +0100
+
+    updated generator to compute correct subproduct tree
+
+[33mcommit 83ba347a320931093a422646d8f07a9700a40d64[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Sep 19 14:42:02 2019 +0100
+
+    Only update location if participant is in WAITING state.
+
+[33mcommit af657b5a2d58aaac99d97f1b29d83ee5d2fbd480[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Sep 19 13:43:16 2019 +0100
+
+    Use real ip addresses, not fake.
+
+[33mcommit cf9a26857a73b765b6268683a5eea3ae439d0653[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Sep 18 19:05:09 2019 +0100
+
+    Target group health params for faster turnaround.
+
+[33mcommit a23c5d386e70b802f69a487e56726bd47ddbf442[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Sep 18 18:58:47 2019 +0100
+
+    Target group health params for faster turnaround.
+
+[33mcommit 0446ef2377b28a6c88c7370e7f61e153dfd3ab00[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Sep 18 18:37:35 2019 +0100
+
+    WAF rate limit to 3000 requests per 5 mins.
+
+[33mcommit 8e21bea3d316324b40c7d6f86dab764cfa62daa4[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Sep 18 17:06:37 2019 +0100
+
+    Fix tests.
+
+[33mcommit 9a6bc23333af7aacaaf61ea72d690d2116dac145[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Sep 18 16:40:10 2019 +0100
+
+    README work. Download transcript signature endpoint.
+
+[33mcommit baf405e229b5089bf3105ecef2e397e5430c36d2[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Sep 17 17:09:16 2019 +0100
+
+    Enforce only 1 upload at a time (malicous participant could otherwise potentially overload server).
+
+[33mcommit 5979a0cb682133a65abfa68ea84bc1f11548f5d0[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Sep 17 16:04:15 2019 +0100
+
+    Include CRS (G2 point) in final manifest.
+
+[33mcommit 29e6d166ddf3351f56f3b8ddbf24decf2eab4d2c[m
+Merge: aeed69a f2a6c95
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Sep 17 10:44:44 2019 +0100
+
+    Merge pull request #12 from AztecProtocol/cl/patch_state
+    
+    Allow patching certain ceremony parameters at runtime.
+
+[33mcommit f2a6c9583886831bdd0c0a938757d754b2154724[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Sep 16 15:17:02 2019 +0100
+
+    Fix.
+
+[33mcommit fafbcf5b2cedad28af000d76d4ff45eb58872b92[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Sep 16 14:45:42 2019 +0100
+
+    Fix.
+
+[33mcommit ffc14f500e77a248f7dcd0de8776fb03cc689a84[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Sep 16 14:19:34 2019 +0100
+
+    Allow patching certain ceremony parameters at runtime.
+
+[33mcommit aeed69ad6d4180a17f52e3b9359019b7f2e916a2[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Sep 14 09:36:31 2019 +0100
+
+    New script to simulate docker client (ping + compute offline). Server "update participant" optionally accepts transcript array.
+
+[33mcommit 8490fc1cf0d1759d2dc08158a039984e44751af3[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Sep 13 19:57:18 2019 +0100
+
+    Update globe logo. Delete legacy web terminal app. Script to upload with sigs.
+
+[33mcommit b673b544e58ebb722319c0ea4bcbc86571d4dd57[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Sep 13 15:07:17 2019 +0100
+
+    Terminal app shows publishing progress.
+
+[33mcommit e88cc482308067cd9d322e1eeb6b58e0e1ebf114[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Sep 13 14:02:08 2019 +0100
+
+    Properly destroy old publishers.
+
+[33mcommit b758a2d1404799a4b4013a0784f8364b5cbb7a69[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Sep 13 13:36:05 2019 +0100
+
+    Publisher progress fix.
+
+[33mcommit 8a540e223783312ebeae6ff3a3ea5eb0635dd6df[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Sep 13 12:32:30 2019 +0100
+
+    Parallelise publish. Fix progress hopefully.
+
+[33mcommit 329501e321efd241de4875cd852d83c8a605676e[m
+Merge: 80bda57 a23c070
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Sep 13 10:47:28 2019 +0100
+
+    Merge pull request #11 from AztecProtocol/cl/publish
+    
+    Cl/publish
+
+[33mcommit a23c0704c34be62be2babdf064c47a2d547f6493[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Sep 12 21:56:48 2019 +0100
+
+    Move s3 explorer.
+
+[33mcommit 92049db6ab71bcfe60f1533705f565015248f32b[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Sep 12 21:54:32 2019 +0100
+
+    Index location fix.
+
+[33mcommit 7105c173935d3ecc45bda8e1498e6308c92c7ace[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Sep 12 21:52:24 2019 +0100
+
+    Add link to transcripts to the globe.
+
+[33mcommit 2ce285f03dbf10e5e90c839dc934a2b755076ed4[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Sep 12 21:13:36 2019 +0100
+
+    Initial publish to S3 work.
+
+[33mcommit 80bda57d1c59166583595c4c1917f993a64e4b78[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Sep 10 18:51:07 2019 +0100
+
+    Fix terraform.
+
+[33mcommit e8d8755aa2a99149470985af652b8da9f5e7c029[m
+Merge: 243883e 5993cd5
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Sep 10 18:16:38 2019 +0100
+
+    Merge pull request #10 from AztecProtocol/cl/sealing
+    
+    Cl/sealing
+
+[33mcommit 5993cd5ab212d02cd897208338d682ca43f1831a[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Sep 10 17:49:36 2019 +0100
+
+    Fixes around server reset during sealing.
+
+[33mcommit 8b571f66e1db76c8bf8ba1956a3641402404ac49[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Sep 10 16:45:16 2019 +0100
+
+    Sealing of transcripts.
+
+[33mcommit 243883e2e00659ff1a554e1147ca81aa703b9cb3[m
+Merge: eff0d84 3271cb1
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Sep 9 11:37:11 2019 +0100
+
+    Merge pull request #9 from AztecProtocol/cl/participant0
+    
+    Cl/participant0
+
+[33mcommit 3271cb186f918157ae65a5113b4f4bdf59c66ea0[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Sep 9 11:13:02 2019 +0100
+
+    Add a script for signing transcripts.
+
+[33mcommit 5a4dcc5099e54e45c1cf99a4173180983a11189c[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Sep 9 11:06:39 2019 +0100
+
+    If a transcript fails verification, delete it. This resolves an attack where P uploads A which fails, B which succeeds based on A, then another A which succeeds but not relative to B. All transcripts would be verified true but sequence would be corrupt.
+
+[33mcommit f2cf7df3a0129a5082a15a3bf283a3b4c2d91168[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Sep 6 18:05:24 2019 +0100
+
+    Pariticpant 0 work and new client bash scripts to aid offline computation.
+
+[33mcommit 43e2c13f025658adba469ce31a7215ecf47701a0[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Sep 6 10:51:11 2019 +0100
+
+    Enable http keep-alive for client.
+
+[33mcommit 29ac15b148b85891fd4977e610f09ec4b30cd100[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Sep 5 14:59:27 2019 +0100
+
+    Server has control over transcript numbers. Get rid of verify_set in favour of verify checking correct number of points etc. Groundwork for an uncoordinated participant 0...
+
+[33mcommit eff0d8421f810f10cd18359bb6459502c2c7c2ca[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Sep 5 15:08:44 2019 +0100
+
+    Decrease server deregistration delay to 5 seconds.
+
+[33mcommit 6ab59cd9ac484725d4558c4cebe8eb484dc5e335[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Sep 5 14:51:08 2019 +0100
+
+    Server rollout disable blue-green. Basically shutdown server before running the new one or else bad things can happen...
+
+[33mcommit a7811496521983c697d52d2dfb9a752a64fc9354[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Sep 5 10:54:53 2019 +0100
+
+    Shifted all global circleci context to repo.
+
+[33mcommit c85899e7d00a176b22a4dd0c5df9e915dadeab0f[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Sep 4 16:53:54 2019 +0100
+
+    Enable alb logs.
+
+[33mcommit 94a1aee36c42fee02909ce1d563a0295c30b30c3[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Sep 4 15:00:03 2019 +0100
+
+    Minor tweaks to setup tool to build on OS X plus progress rounding improvement.
+
+[33mcommit 745ee88b9963d8cfdef7f568aaaad9dd9f5b1bee[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Sep 3 18:10:17 2019 +0100
+
+    Rework a lot of terraform to improve security and availability.
+
+[33mcommit e9ab5c871def6efaf58722a3ca5a3ee31e40646f[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Aug 30 18:24:56 2019 +0100
+
+    Fix deploy.sh
+
+[33mcommit 096574c63eb18a6f015ac3a59ed959df99c013b8[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Aug 30 18:17:15 2019 +0100
+
+    Loop star.
+
+[33mcommit fa291eea53e20cf9870ca83638cc371435193cc2[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Aug 30 17:40:36 2019 +0100
+
+    Client checks transcript actually downloaded. Needed as for some reason no exceptions or errors get thrown if connection goes down. Small fix to filesize output in setup-tools.
+
+[33mcommit 89240cf113e79d01ff57d3b8a9acf28614d02fb2[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Aug 29 17:36:06 2019 +0100
+
+    Bump server back to xlarge.
+
+[33mcommit 88281fc4d8208c9ef6f60a29437e23c29e0edc9b[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Aug 29 15:52:49 2019 +0100
+
+    Fix latestBlock not updating bug.
+
+[33mcommit 3b6f26bdedfdb3fdd4f8a7c21beb3f6c962340ae[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Aug 29 14:51:04 2019 +0100
+
+    Fix build.sh.
+
+[33mcommit da12be7a509493cd95fba4af0a64574d1039a1b8[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Aug 29 14:14:44 2019 +0100
+
+    Fix build.sh.
+
+[33mcommit 03cf6e505d3427aef38887a5ba41e9b1a4e4eb7c[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Aug 29 12:49:33 2019 +0100
+
+    Fix build.sh.
+
+[33mcommit 640998312b05fc2c47207c5085b32b148c63d7cd[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Aug 29 12:39:55 2019 +0100
+
+    Make build and deploy scripts generic.
+
+[33mcommit aa97a38785e356d8f4bbcb3623aff3a776b45b3d[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Aug 28 23:07:01 2019 +0100
+
+    Enable rotation on globle.
+
+[33mcommit eb3906f9289d860e96cf603d888ddcee4a78fba9[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Aug 28 12:18:17 2019 +0100
+
+    Fix shooting stars going through earth when long distance. Fix going to standby on refresh when should be on city.
+
+[33mcommit 74305aa708d87163e3d92c3cf0f0db63514d11bd[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Aug 28 00:29:35 2019 +0100
+
+    Default download progress with no data to 0.
+
+[33mcommit c80c0e170166ac8465c0e6d48d416db2ed1eeb62[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Aug 27 23:40:37 2019 +0100
+
+    Fix verify bug when running on 2 cores...
+
+[33mcommit 5ab7c5b18729053431a984ef68a74987236fdd18[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Aug 27 15:49:14 2019 +0100
+
+    Unit tests for server.
+
+[33mcommit 230a1d8ac0a777ab4edd51397e636eaedbe34183[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Aug 26 16:45:00 2019 +0100
+
+    Shooting star effect.
+
+[33mcommit e4e779e70bb60f189fc91aabe1f9284498eda2da[m
+Merge: 8e41ef6 c927518
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Aug 26 15:21:34 2019 +0100
+
+    Merge pull request #8 from AztecProtocol/simulate_participant
+    
+    setup: added ability to simulate a participant
+
+[33mcommit c9275188c632cb3fca20f67c028e5e41841d1950[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Mon Aug 26 15:13:52 2019 +0100
+
+    setup: removed extra 'num_files' parameter
+
+[33mcommit fb1c988e9c8dcdff304f82ec2d2b66baf16bf643[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Mon Aug 26 14:44:32 2019 +0100
+
+    setup: added ability to simulate a participant
+    
+    in simuate mode, toxic waste is set to the hash of the previous transcript.
+    
+    this is required for cryptosystems that require setup toxic waste to be modelled as a uniformly randomly distributed element of Fp.
+
+[33mcommit 8e41ef63f47068b5a442fa80be2fc109878b6add[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Aug 25 22:09:49 2019 +0100
+
+    Display green markers for complete.
+
+[33mcommit 173df104c7150e6b80c024d5ba2e91b0631a674f[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Aug 25 19:50:19 2019 +0100
+
+    Enable water mask.
+
+[33mcommit 64562d4067a91af6c16e892f91bb1b868141b8f5[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Aug 25 15:34:26 2019 +0100
+
+    Use Roboto Mono when Menlo not available (Windows...)
+
+[33mcommit 7b2f5e0fd24cd16874913f0f4b35d27cafbf06ac[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Aug 25 13:14:37 2019 +0100
+
+    Signal handlers on map server.
+
+[33mcommit cc7651263838ceec2b855d5b8962fc0ece6b8e30[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Aug 25 13:09:16 2019 +0100
+
+    Color changes on server status.
+
+[33mcommit f5a4913adb11df067df74215bf006f519fa244fd[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Aug 25 12:18:32 2019 +0100
+
+    Killing off setup-mpc-web. Leave code for now...
+
+[33mcommit 1a7fbd629f50487566f340283b52ae02c6852a7d[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Aug 25 00:06:02 2019 +0100
+
+    Hard link maxmind db to dest dir.
+
+[33mcommit b00cbc447ca0a1d25664822ff215a2330c0db835[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Aug 24 23:49:12 2019 +0100
+
+    Fix health check for web.
+
+[33mcommit 09f418ae82473d2e9204a5b5a4253ffd5a522cbb[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Aug 24 23:02:03 2019 +0100
+
+    Change ALB rule priorities.
+
+[33mcommit dca9934deae0286e03fd1c7108b414253217e517[m
+Merge: ca26a8a b9097aa
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Aug 24 22:49:43 2019 +0100
+
+    Merge pull request #7 from AztecProtocol/cl/cesium
+    
+    Cl/cesium
+
+[33mcommit b9097aadc707a3b5d6fa1225bb1bc0a0ed4cca31[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Aug 24 22:35:04 2019 +0100
+
+    Terraform for map. Serve terminal under /terminal.
+
+[33mcommit 9e2c02bb416f549edbb8be03ba93c041222acc18[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Aug 24 21:55:12 2019 +0100
+
+    Big ignition counter.
+
+[33mcommit 59825fe876b876f307b1457dfc609c7a792021f7[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Aug 24 19:03:01 2019 +0100
+
+    Remove empty test file.
+
+[33mcommit 64d192502d707eb48b3af3dd5c92125e5702a715[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Aug 24 19:01:43 2019 +0100
+
+    Build/CI work.
+
+[33mcommit 08b3e75f4cbff241da252a8bb3c92f7dfd7b5c7a[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Aug 24 18:16:26 2019 +0100
+
+    Render overlays before flyover.
+
+[33mcommit 98d986f19dfb54ecf33abab1609d01c6fe4211f3[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Aug 24 18:06:37 2019 +0100
+
+    Render invalid properly. Compute offline support.
+
+[33mcommit 6ef2fc76dfd2ceb2e7b2b6a70576e3fc866ce2bf[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Aug 24 16:32:14 2019 +0100
+
+    Styling for mobile and more.
+
+[33mcommit cb02d730f5adc3d2c073f94275712e7351c62855[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Aug 23 22:10:27 2019 +0100
+
+    Links. More status.
+
+[33mcommit 027de13f0fbd06854cf3d3b77a021c045786113d[m
+Merge: 4a6a137 da44cdc
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Aug 23 20:10:38 2019 +0100
+
+    Merge branch 'cl/complete' into cl/cesium
+
+[33mcommit 4a6a13767f4ffeeadf9b4967b68875a7e174f33c[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Aug 23 18:04:02 2019 +0100
+
+    Actually works with real state.
+
+[33mcommit 89c5c07976e0815e00c3a2c0dcadb7f8c1b7fe53[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Aug 11 22:04:13 2019 +0100
+
+    More work.
+
+[33mcommit 7e5c2857e09e37f1391fddcaa1b21f6d1cce543f[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Aug 11 09:38:39 2019 +0200
+
+    Initial cesium.
+
+[33mcommit da44cdca311b1d06f5f2b95a24ce2e3233872b42[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Aug 22 20:21:15 2019 +0100
+
+    Only complete when min participants and end date reached. Verification rate for > tier 1.
+
+[33mcommit ca26a8a09d23b994def848f50dbb60e7329389b2[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Aug 21 23:18:37 2019 +0100
+
+    Define private subnets and nat gateway for ecs services to gain internet access.
+
+[33mcommit dff33c5fb63136ee0ec20aa2ed43a360fb71b16d[m
+Merge: d42a50d ec22375
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Aug 21 15:30:07 2019 +0100
+
+    Merge pull request #6 from AztecProtocol/cl/selection
+    
+    Cl/selection
+
+[33mcommit ec22375b14b18798f2885e48135c0fc5381807ad[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Aug 21 15:23:16 2019 +0100
+
+    Run server tests as part of ci.
+
+[33mcommit 764ab2d8f74bd51d920c5413f824905fcd2b3515[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Aug 21 15:03:09 2019 +0100
+
+    Max number tier 2 participant support.
+
+[33mcommit f36a2ecb7b5889438d4dbc611682176960e71202[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Aug 19 22:34:32 2019 +0100
+
+    Randomise participants at select block.
+
+[33mcommit 04e9e3e9c85fb6f66d92d0c20215af77ca78d838[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Aug 19 15:35:05 2019 +0100
+
+    Intial selection work. Monitors chain for participant transactions and adds.
+
+[33mcommit d42a50d95e714526a0c178a6122d0d9dd17ab824[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Aug 18 10:04:28 2019 +0100
+
+    Small fixes/changes.
+
+[33mcommit 1bcc7eab74fc41b8d84c8aff0f45969f4f814483[m
+Merge: 88ef0c8 c7ab8ce
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Aug 17 17:36:18 2019 +0100
+
+    Merge pull request #5 from AztecProtocol/cl/state_delta
+    
+    Cl/state delta
+
+[33mcommit c7ab8cef641bc5a476f88d66ff22ba96d52e4e66[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Aug 17 16:58:41 2019 +0100
+
+    Impove transcript store. Delta work. Priority queue work.
+
+[33mcommit 40480e9ca47c34500a9229f3fa1ad719e66be21f[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Aug 16 19:04:50 2019 +0100
+
+    Server status banner. Network deltas.
+
+[33mcommit e5662b3766f4dc818b448065f980031a06899110[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Aug 16 12:45:00 2019 +0100
+
+    Add print-point tool. Web dynamically calculates api url.
+
+[33mcommit 88ef0c886b4fb7960abc8cc4a9a94ba585578586[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Aug 15 17:57:39 2019 +0100
+
+    Client README.
+
+[33mcommit efaefc29a9c79a2d988c6ce4d9e11c4678d4f9ee[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Aug 15 16:46:23 2019 +0100
+
+    Client remove promisify as it's borking webpack for web.
+
+[33mcommit c8bae7321b0510a16e426316079e490e5760d8af[m
+Merge: 5677fa8 01f5ad1
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Aug 15 16:18:09 2019 +0100
+
+    Merge pull request #4 from AztecProtocol/cl/failsafe
+    
+    Cl/failsafe
+
+[33mcommit 01f5ad16076cfeef9ed0a771f139ce998ffde49a[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Aug 15 16:17:55 2019 +0100
+
+    COMPUTE_OFFLINE env var
+
+[33mcommit 44470a8f5fe2ccb3ee05bf3c87537ecec69737d0[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Aug 15 16:13:28 2019 +0100
+
+    Server runs on ec2 instance with efs volume.
+
+[33mcommit 36e6732aa29b0ba0a0d50579550c396d71cbe2b1[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Aug 14 23:18:33 2019 +0100
+
+    Fix missing await.
+
+[33mcommit 8b899353703cf08b20421b45748c671a4422b244[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Aug 14 21:55:18 2019 +0100
+
+    Fix manifest validation bug.
+
+[33mcommit 20659e1d96d974c0ae86831aba05192eea653065[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Aug 14 17:43:15 2019 +0100
+
+    Better fail handling, state handling etc.
+
+[33mcommit 3cd62b4d12a9fc5d26543001239ef78158235d42[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Aug 14 13:33:21 2019 +0100
+
+    Server succesfully resumes on restart.
+
+[33mcommit 805d4f3e77aeefee0b131fb5fae52497359b02c4[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Aug 13 21:26:48 2019 +0100
+
+    Server storage work.
+
+[33mcommit 0790201664f9abcc5c615799840b3ed70770f1fa[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Aug 13 20:19:08 2019 +0100
+
+    Bug fix.
+
+[33mcommit 6b02c1337db034276628301ec2c3d62a07e981d8[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Aug 13 17:02:29 2019 +0100
+
+    First draft of server recovery. Should be able to resume verification of transcripts in the event of server failure.
+
+[33mcommit b1359bb8c3d4ce632c31db196327f333dd84b011[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Aug 13 10:34:08 2019 +0100
+
+    Initial work.
+
+[33mcommit 5677fa852db968da7908d25c7450d7d948bac0b1[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Aug 13 13:47:42 2019 +0100
+
+    README
+
+[33mcommit 60162f94faac695ea19622132b467efe8ef920b7[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Aug 13 11:23:18 2019 +0100
+
+    Setup tools cmd line args.
+
+[33mcommit a65de960934b837c4bdebb4464275b40eb2ac922[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Aug 12 13:04:08 2019 +0100
+
+    HTTPS support.
+
+[33mcommit 4c6ce71209e1fa3ef1ef79266e1094a7e18579e5[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Aug 10 12:57:15 2019 +0200
+
+    Task definition mess :/ Enable compress on server.
+
+[33mcommit 90f359f9a06d75db54fd3bdfc9a466b9e22c9c29[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Aug 10 11:47:10 2019 +0200
+
+    Only fail fast on run-in. Build doesn't need?
+
+[33mcommit 63e6e2b79939b3701f6cdb1ba02f912f18b589fb[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Aug 10 11:45:41 2019 +0200
+
+    Add fail fast to mbt.
+
+[33mcommit f0bbc5a2c4a1f0802022543fd420bdeb5db93c17[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Aug 10 00:40:12 2019 +0200
+
+    Terraform work.
+
+[33mcommit 032768834ab7bb5fd1c3d9f3e50e1eea45bfd582[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Aug 8 21:16:18 2019 +0200
+
+    Fail CI on error.
+
+[33mcommit 654d3c3ca07e2af8fc788fb3dd2127378436c197[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Aug 8 20:45:12 2019 +0200
+
+    ECR login first.
+
+[33mcommit 5efe97f0ef922b0d018af41ed2087fdda0d6eaf4[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Aug 8 20:41:37 2019 +0200
+
+    Terraform for mpc server.
+
+[33mcommit 96bbd189a53f24a29614b7bc4a0f3d0ed353abdb[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Aug 7 18:06:45 2019 +0200
+
+    Successful commits. Not completed.
+
+[33mcommit 48763d92bdac40e9b95292a3ef5a73037561632a[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Aug 7 17:44:33 2019 +0200
+
+    Have to repeat some ci code between steps...
+
+[33mcommit 0de5becb7e361f661e011a463ee333b099cd9a5b[m
+Merge: 7194678 03263a7
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Aug 7 17:27:08 2019 +0200
+
+    Merge pull request #3 from AztecProtocol/cl/mpc-client
+    
+    Cl/mpc client
+
+[33mcommit 03263a7007720b3a53415232c6b38ba1919c30c2[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Aug 7 17:04:32 2019 +0200
+
+    Public docker hub repo work.
+
+[33mcommit f7d7b9d4ba94e31748bd28389e868da5993cd2a0[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Aug 6 23:10:28 2019 +0200
+
+    Commit yarn.lock for job-server.
+
+[33mcommit 6492a12fa62081a62b5a7fa6f1faed7206cf2b4e[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Aug 6 22:56:53 2019 +0200
+
+    Compare against master.
+
+[33mcommit 9ee75209d8cef09c448b1da80c57787f1ea2a8c5[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Aug 6 22:44:31 2019 +0200
+
+    mbt diff
+
+[33mcommit b1f4aeb7eadbe0c7bb388c0640bc27de39634671[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Aug 6 22:42:43 2019 +0200
+
+    mbt diff
+
+[33mcommit dc86059f5b59437d0aba904422de39eb23f9590c[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Aug 6 22:02:14 2019 +0200
+
+    Build on jessie as mbt needs openssl1.0.0.
+
+[33mcommit 45cfcd068b1066e751387b92c35ddf66667adc36[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Aug 6 21:09:15 2019 +0200
+
+    Build work.
+
+[33mcommit dd521ba03e7f4d41d196c11766debe506e9289fb[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Aug 6 21:07:19 2019 +0200
+
+    Monorepo build work with mbt.
+
+[33mcommit 9f0d50d17ae0ca29206421be4ee06648334e2b56[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Aug 2 13:59:11 2019 +0100
+
+    Verification work complete.
+
+[33mcommit 6fec91660edec1a442eaeb4659844eb75f541be4[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Jul 30 15:11:29 2019 +0100
+
+    Verification work.
+
+[33mcommit d09d8d9350e4157a81b7354c562cc98855ea180b[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Jul 29 18:32:38 2019 +0100
+
+    Verifier works with batches. Verifier is parallelised and uses libff.
+
+[33mcommit 9a0adc0df15cd8765ff9fbd6f46c3211089f16f6[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Jul 28 23:08:27 2019 +0100
+
+    Humanize ceremony duration.
+
+[33mcommit 1e24980b2b196ab7986083843cf1989472d8278d[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Jul 28 19:20:29 2019 +0100
+
+    Settings configurable via body.
+
+[33mcommit acbabfb2b0431d354cf53a671ba26a69d845dcb9[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Jul 28 19:03:30 2019 +0100
+
+    Skip time configurable.
+
+[33mcommit e6b3258d82bec53eb5ba6f6a3282ae5b303dfed7[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Jul 28 18:43:36 2019 +0100
+
+    Fix.
+
+[33mcommit 61ab835afac0a19f66a5b57d44d8314b69b35e7e[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Jul 28 18:39:34 2019 +0100
+
+    Simulate verify and ui.
+
+[33mcommit 69246cc37e85a74b8cecb9734acee1e9b2d09b97[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Jul 28 15:30:48 2019 +0100
+
+    Progress work.
+
+[33mcommit e871219998a625cb2bb7575a91c683a0ffbb7b65[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Jul 28 11:29:38 2019 +0100
+
+    Resuming and progress work.
+
+[33mcommit 275849450fa45ba71b579e147c6a3675ef807ff0[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Jul 27 22:05:14 2019 +0100
+
+    Batching work.
+
+[33mcommit 85bce893b13c45f41100c91771f0b0b6a19705d3[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Jul 26 16:15:57 2019 +0100
+
+    Initial transcript batching.
+
+[33mcommit 75d139a7baa1a9f06e6ae00afdbff5904794a833[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Jul 25 17:14:57 2019 +0100
+
+    Verification working.
+
+[33mcommit 4f008fdd57667246532d2485ea52f28fdd4d23df[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Jul 25 11:35:34 2019 +0100
+
+    Kill signals immediately kill server.
+
+[33mcommit 33edaf1d341ef52eda16e27804883d1dbd432016[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Jul 25 11:20:30 2019 +0100
+
+    Linting. Docker the web ui.
+
+[33mcommit 6be42233f31a97099bc6d6687c02e066ad80c3e2[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Jul 24 18:07:13 2019 +0100
+
+    DemoServer can ignore multiple participants.
+
+[33mcommit 98aff8e1f3e427b4b53ad00e0a93923231905f2e[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Jul 24 17:25:16 2019 +0100
+
+    Compute progress.
+
+[33mcommit ca94159ec7a966892fe8768d95026a4e4f659225[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Jul 24 15:12:54 2019 +0100
+
+    Lots of stuff.
+
+[33mcommit 9c99015e1739fb50053d5675c0ab9b3db0149601[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Jul 21 22:19:25 2019 +0100
+
+    Docker work. Toxic waste reduce copies. Fix threading bug. Compression work.
+
+[33mcommit 3a952718aeb26b48d2ba0258832efc093649c876[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Jul 21 12:31:49 2019 +0100
+
+    Collapse onto single folder setup_db. Transcript is a single file transcript.dat. New streaming funcs for reading/writing transcript.
+
+[33mcommit 3a7e71fb7f72a1eceebc8c7d1bb71742ec31dfed[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Jul 21 08:49:20 2019 +0100
+
+    Extract verify into own tool.
+
+[33mcommit 1643b2104279751513970904572ce53cb07635d0[m
+Merge: 48ad7e7 f827ace
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Jul 20 20:24:55 2019 +0100
+
+    Merge branch 'cl/setup_verifier' into cl/mpc-client
+
+[33mcommit 48ad7e7152f95f3f28b8018784c445796d16af3d[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Jul 20 19:18:43 2019 +0100
+
+    Loads of work.
+
+[33mcommit 98219e75c184a35a8c701bcb72634240758bccce[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Jul 19 10:48:59 2019 +0100
+
+    Initial server work.
+
+[33mcommit 01cb508bfe7e3659bc9b043de1477bf2ae4d0b91[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Jul 18 17:06:39 2019 +0100
+
+    MPC browser spectator work.
+
+[33mcommit f827acec90176879b2fc804ed62fe4acd9b3aae9[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Jul 17 16:57:21 2019 +0100
+
+    Initial enabling and slight refactor.
+
+[33mcommit d22fef635a4eb1d534bff75c0f0fb8ad51f561ee[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Jul 17 11:51:15 2019 +0100
+
+    Terraform changes to allow ssh logins.
+
+[33mcommit e431e568bec307d18831205560f863405e481a87[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Jul 15 11:29:15 2019 +0100
+
+    Change test defaults.
+
+[33mcommit 98930578fb04c65e6ffeef6637433e376aa2a3cb[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Jul 14 23:26:10 2019 +0100
+
+    More PoC work.
+
+[33mcommit a69c2c1f95bd44bbcc222578c37c8f9a069099d3[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Jul 14 17:54:26 2019 +0100
+
+    Initial MPC client proof of concept.
+
+[33mcommit 71946782bf7b6262fb110507a37cc90a62f042de[m
+Merge: f306532 ee9a68f
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Jul 15 15:05:20 2019 +0100
+
+    Merge pull request #2 from AztecProtocol/cl/optimise
+    
+    Cl/optimise
+
+[33mcommit ee9a68fe56894d1ca520418eac1adcd470741cf0[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Jul 15 14:38:04 2019 +0100
+
+    Test branches.
+
+[33mcommit 849c8a81dec39b9e5032e2918640c7f872e5dd17[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Jul 15 14:22:32 2019 +0100
+
+    Fix tests.
+
+[33mcommit aa5a84a36e524400d0ca1c2860b9f3f5129dd703[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sun Jul 14 00:14:03 2019 +0100
+
+    Update Dockerfile to prep data after download.
+
+[33mcommit 18ee11c12c93de31777fae127e780ee16c13a725[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Jul 13 20:44:10 2019 +0100
+
+    Remove window.h
+
+[33mcommit 00fb4ea7b840a4e53195d37d099de7dd613242ce[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Jul 13 20:42:45 2019 +0100
+
+    Memory map files for post process. Requires new too, range-prep, to prep the data for libff on little endian.
+
+[33mcommit 01e9e906f52518b478038dadec9792f14c957115[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Jul 13 12:37:46 2019 +0100
+
+    Timer. Batching.
+
+[33mcommit 00314f8c50a5e1e959b6862d57287467a627b1cf[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Sat Jul 13 01:12:13 2019 +0100
+
+    Initial optimise.
+
+[33mcommit f30653279d6d5092aef6d132a20266fee0423b13[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Jul 12 22:03:39 2019 +0100
+
+    Better output.
+
+[33mcommit c7fa44fcd8e0a697652afac857f8c6173759a467[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Jul 12 22:03:39 2019 +0100
+
+    Better output.
+
+[33mcommit 9761443161a57e5f6700605825e38515b68d3265[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Jul 12 18:50:06 2019 +0100
+
+    More mem. Better output. Don't expire fleet request.
+
+[33mcommit 2c3bdff0c04d25cd6ae0a276c57e1a3dd07e5198[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Jul 12 16:53:43 2019 +0100
+
+    Bump capacity. Increase job expiration to 10m
+
+[33mcommit b5e3cb160739b531ab13d11b134112e7e88c5e8b[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Jul 12 15:04:15 2019 +0100
+
+    Fix.
+
+[33mcommit 71c60803a009bd9e412677fe9f49a3bf4b3dc08a[m
+Merge: 50e21ab 5000898
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Jul 12 14:57:18 2019 +0100
+
+    Merge pull request #1 from AztecProtocol/cl/runner
+    
+    Cl/runner
+
+[33mcommit 5000898f855e7c5ecb0f54603616551a3f6dd0bd[m
+Merge: cc4ac87 50e21ab
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Jul 12 14:56:40 2019 +0100
+
+    Merge
+
+[33mcommit cc4ac879419c630bcf89a22df09693264a18d8a1[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Fri Jul 12 14:47:56 2019 +0100
+
+    Full Terraform. Pull data from s3.
+
+[33mcommit 4dbabbd716340af415cb3618e1a381ec026736dc[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Thu Jul 11 11:30:47 2019 +0100
+
+    Terraform for job-server.
+
+[33mcommit 7c996a7425daf3d23fb88a1e234dc995c8348a88[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Jul 9 14:49:36 2019 +0100
+
+    Fix circle
+
+[33mcommit e515dc7af4169546d7c8b54b7bbf4265693bb820[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Jul 9 14:34:06 2019 +0100
+
+    All images should be built. Task runner updates.
+
+[33mcommit 562af8d81de4aec92a45d67dfafd9b23ea686a7d[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Jul 8 16:36:57 2019 +0100
+
+    Inital attempt at ecr orb.
+
+[33mcommit 779b66debcca65582df3834ef89472754e8f61c1[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Jul 8 16:07:00 2019 +0100
+
+    Inital attempt at ecr orb.
+
+[33mcommit 2cc6b6602f69374da7ff5890b20cd39d8dbc7c9c[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Jul 8 16:03:34 2019 +0100
+
+    Inital attempt at ecr orb.
+
+[33mcommit 37ba49ea24a696e81e0d941b21382e3d265aaef7[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Jul 8 16:02:19 2019 +0100
+
+    Inital attempt at ecr orb.
+
+[33mcommit 206ce8e7872ac76dfb40e316fc667b3ae1935255[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Jul 8 16:00:16 2019 +0100
+
+    Inital attempt at ecr orb.
+
+[33mcommit 8af6660a116b072b3cf64cc58af2113a6be559f7[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Jul 8 15:56:56 2019 +0100
+
+    Inital attempt at ecr orb.
+
+[33mcommit dcc2e763a640281331125bc04b1aa10ee754f9bc[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Jul 8 15:22:23 2019 +0100
+
+    Inital attempt at ecr orb.
+
+[33mcommit bc7ee8afdd86475461aae83f9e4c6da3f595e20c[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Jul 8 15:16:00 2019 +0100
+
+    Inital attempt at ecr orb.
+
+[33mcommit d8e5f1bf5f6cba9b44887d7183f74cc1dcbcad96[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Jul 8 14:29:58 2019 +0100
+
+    Inital attempt at ecr orb.
+
+[33mcommit 50e21ab9a4895510d6450eecdf3401869a8e217b[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Jul 8 13:22:58 2019 +0100
+
+    Poke circleci.
+
+[33mcommit dfc4d8fc1fdcfaee420f404b7302f9516e6239c7[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Jul 8 13:19:28 2019 +0100
+
+    Poke circleci.
+
+[33mcommit 74db00bc4be7e6f700272f04362dfaee8f4cc32b[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Mon Jul 8 13:12:33 2019 +0100
+
+    Restructure. Bring job server into monorepo structure.
+
+[33mcommit 8a7860d00a55871ad229f53f6727d96a32ab97d4[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Wed Jul 3 16:35:36 2019 +0100
+
+    Runtime poly degree.
+
+[33mcommit 7f91efbfaa1622763a03df00d758efe2bedd9a04[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Jul 2 22:49:11 2019 +0100
+
+    Runner work.
+
+[33mcommit 73561ee8f2f73a6e81963341e4c6b297316aa8b8[m
+Merge: 715b066 505712e
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Jul 2 16:13:31 2019 +0100
+
+    Merge branch 'master' into cl/runner
+
+[33mcommit 715b066572ac5eba599ed3914fb85d0accca3ce7[m
+Author: Charlie Lye <karl.lye@gmail.com>
+Date:   Tue Jul 2 16:13:13 2019 +0100
+
+    Intial runner work.
+
+[33mcommit 505712e3b1f5082844172ed789069de6d37af2a3[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Tue Jul 2 13:32:37 2019 +0100
+
+    setup now reads transcript ffrom correctl ocation
+    
+    compute_range_polynomial now takes in an input argument
+    range index defines the range index to be computed
+
+[33mcommit 4a82326d484f5e6f36cf323564b6d7133385109a[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Mon Jul 1 14:10:10 2019 +0100
+
+    removed unused comments
+
+[33mcommit 3a376814a7215ce99cdf74f4bcdade5dfa9f2935[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Mon Jul 1 12:24:00 2019 +0100
+
+    updated setup tests to conform to previous commit changes
+
+[33mcommit 90daa133a838667262a6ad1ac5cebcdc04ec4612[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Mon Jul 1 12:23:30 2019 +0100
+
+    removed alpha terms from setup
+
+[33mcommit 0cd7f177ce21ae0c4da16adf7c9d289ed669f039[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Mon May 20 17:32:12 2019 +0100
+
+    added multithreading into compute_range_polynomial
+    
+    added copyright notice
+
+[33mcommit ee6f73c63eb0b259ef2c89572cceb16f39de0399[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Mon May 20 16:53:53 2019 +0100
+
+    added readme
+
+[33mcommit 73ff73bfcc51f1734461e3b85abadde88f4c5960[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Mon May 20 16:45:08 2019 +0100
+
+    compute_range_polynomial maps MPC points to range proof signatures
+    
+    added very basic tests for compute_range_polynomial
+    
+    added batch_normalize into aztec_common
+
+[33mcommit c021b1295a58ebbf0e8972833674682dc5baf3b2[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Thu May 16 16:18:37 2019 +0100
+
+    removed redundant typedefs in templated methods
+
+[33mcommit 62e3028eeb1f01dd9f6c8ce8c574eb38cd849f13[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Thu May 16 15:58:18 2019 +0100
+
+    transcript is verified before being updated
+
+[33mcommit 8f5f5b70527ab980948e12371c4f9366cce874ff[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Thu May 16 15:52:05 2019 +0100
+
+    added passing test for verification algorithm
+
+[33mcommit 47c58eb8b7a238ccd26e73bd904b28b6715e7ddc[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Thu May 16 14:30:11 2019 +0100
+
+    added blake2 dependency
+    
+    a checksum for each db file is now computed, and validated against
+
+[33mcommit 820394435d05ea7d2cee2a0b5dd6cea229bfef7c[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Wed May 15 19:55:32 2019 +0100
+
+    added method to verify a previous transcript
+    
+    memory containing trapdoor key is explicitly wiped at end of setup
+
+[33mcommit 39522028248b842c8396f60897e9737294110457[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Wed May 15 17:56:17 2019 +0100
+
+    added HunterConfig && GTest package
+    
+    added unit tests for batch normalization
+    
+    added unit tests for streaming i/o
+    
+    added basic setup implementation
+
+[33mcommit 64b6268e7e1418fd620bdb5f3dc7dccccf8de634[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Wed May 15 17:54:58 2019 +0100
+
+    added unit tests for streaming
+    
+    added unit tests for batch normalization
+    
+    added HunterConfig && GTest package
+    
+    added point decompression function
+    
+    added basic implementation of setup phase
+
+[33mcommit 4bcadc17da433551dc92ed1ebe22981ffddefb0e[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Mon May 13 17:12:52 2019 +0100
+
+    added libfqfft as a submodule dependency
+
+[33mcommit a4808323111e0feb4ec466aad537e0f396b5ddaf[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Mon May 13 16:45:50 2019 +0100
+
+    added libff as submodule
+    
+    executables now link to aztec_common library
+    
+    added cable build manager
+
+[33mcommit ae8b07b3642ea3fbfae559e111e7a36ba17b6de1[m
+Author: zac-williamson <blorktronics@gmail.com>
+Date:   Mon May 13 11:16:02 2019 +0100
+
+    initial commit

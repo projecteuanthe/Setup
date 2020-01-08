@@ -1,4 +1,4 @@
-import { createReadStream, existsSync, statSync } from 'fs';
+import { createReadStream, createWriteStream, existsSync, statSync } from 'fs';
 import http from 'http';
 import https from 'https';
 import fetch from 'isomorphic-fetch';
@@ -10,6 +10,7 @@ import { bufferToHex } from 'web3x/utils';
 import { hashFiles } from './hash-files';
 import { MpcServer, MpcState, Participant, PatchState, ResetState } from './mpc-server';
 import { mpcStateFromJSON } from './mpc-state';
+import { es } from 'event-stream'; // note -- adding an external library here
 
 export class HttpClient implements MpcServer {
   private opts: any = {
@@ -122,6 +123,59 @@ export class HttpClient implements MpcServer {
     return (response.body! as any) as string;
   }
 
+  private async countLines(filename: string){ //}, callback: fn) {
+    // http://stackoverflow.com/questions/12453057/node-js-count-the-number-of-lines-in-a-file
+    let i;
+    let count = 0;
+    createReadStream(filePath)
+        .on('error', e => callback(e))
+        .on('data', chunk => {
+            for (i=0; i < chunk.length; ++i) if (chunk[i] == 10) count++;
+        })
+        .on('end', () => callback(null, count));
+  };
+
+  private async splitFiles(filename: string) {
+    var infileName = filename;
+    var fileCount = 1;
+    var count = 0;
+    var fs = require('fs');
+    var outStream : ReturnType<typeof createWriteStream>;
+    var outfileName = infileName + '.' + fileCount;
+    newWriteStream();
+    var inStream = createReadStream(infileName);
+
+    var lineReader = require('readline').createInterface({
+        input: inStream
+    });
+
+    function newWriteStream(){
+        outfileName = infileName + '.' + fileCount;
+        outStream = createWriteStream(outfileName);
+        count = 0;
+    }
+
+    lineReader.on('line', function(line) {
+        count++;
+        outStream.write(line + '\n');
+        if (count >= 200) {
+            fileCount++;
+            console.log('file ', outfileName, count);
+            outStream.end();
+            newWriteStream();
+        }
+    });
+
+    lineReader.on('close', function() {
+        if (count > 0) {
+            console.log('Final close:', outfileName, count);
+        }
+        inStream.close();
+        outStream.end();
+        console.log('Done');
+    });
+  }
+
   public async uploadData(
     address: Address,
     transcriptNumber: number,
@@ -137,6 +191,15 @@ export class HttpClient implements MpcServer {
 
         if (!existsSync(transcriptPath)) {
           throw new Error('Transcript not found.');
+        }
+
+        console.error(`Uploading: `, transcriptPath);
+        const filesizeInMb = statSync(transcriptPath).size / 1000000.0;
+        console.error(filesizeInMb, " mb", statSync(transcriptPath))
+        if(filesizeInMb > 5){
+          // TODO add await 
+          const parts = 20; // maxed at 30 in code
+          await new Promise(r => setTimeout(r, 2000));
         }
 
         const hash = await hashFiles([transcriptPath]);

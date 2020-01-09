@@ -1,5 +1,12 @@
 FROM ubuntu:latest
-RUN apt-get update && apt-get install -y curl build-essential
+RUN apt update && \
+  apt install -y curl && \
+  curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
+  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+  apt update && \
+  apt install -y nodejs yarn libgomp1 build-essential && \
+  apt clean
 WORKDIR /tmp
 RUN curl https://sh.rustup.rs -sSf > rustup.sh \
     && chmod 755 rustup.sh \
@@ -13,14 +20,11 @@ RUN cd phase2-bn254/phase2 \
     && cargo build --bin contribute \
     && cargo build --bin verify_contribution \
     && cargo build --bin beacon \
-    && cargo build --bin export_keys
-
-FROM ubuntu:latest
-WORKDIR /usr/src/setup-tools
-COPY --from=0 \
-  /usr/src/setup-tools/phase2-bn254/phase2/target/debug/new \
-  /usr/src/setup-tools/phase2-bn254/phase2/target/debug/contribute \
-  /usr/src/setup-tools/phase2-bn254/phase2/target/debug/verify_contribution \
-  /usr/src/setup-tools/phase2-bn254/phase2/target/debug/beacon \
-  /usr/src/setup-tools/phase2-bn254/phase2/target/debug/export_keys \
-  ./
+    && cargo build --bin export_keys \
+    && cd ../../ \
+    && cp /usr/src/setup-tools/phase2-bn254/phase2/target/debug/new . \
+    && cp /usr/src/setup-tools/phase2-bn254/phase2/target/debug/contribute . \
+    && cp /usr/src/setup-tools/phase2-bn254/phase2/target/debug/verify_contribution . \
+    && cp /usr/src/setup-tools/phase2-bn254/phase2/target/debug/beacon . \
+    && cp /usr/src/setup-tools/phase2-bn254/phase2/target/debug/export_keys . \
+    && rm -rf phase2-bn254

@@ -4,9 +4,6 @@ import { cloneMpcState, EthNet, MpcServer, MpcState, Participant, PatchState, Re
 import { Address } from 'web3x/address';
 import { getGeoData } from './maxmind';
 import { ParticipantSelector, ParticipantSelectorFactory } from './participant-selector';
-import { Publisher } from './publisher';
-import { RangeProofPublisher, RangeProofPublisherFactory } from './range-proof-publisher';
-import { Sealer } from './sealer';
 import { StateStore } from './state-store';
 import { advanceState } from './state/advance-state';
 import { createParticipant } from './state/create-participant';
@@ -23,9 +20,6 @@ export class Server implements MpcServer {
   private readState!: MpcState;
   private mutex = new Mutex();
   private participantSelector?: ParticipantSelector;
-  private sealer?: Sealer;
-  private publisher?: Publisher;
-  private rangeProofPublisher?: RangeProofPublisher;
   private store!: TranscriptStore;
   private phase2Done = false;
 
@@ -33,7 +27,6 @@ export class Server implements MpcServer {
     private storeFactory: TranscriptStoreFactory,
     private stateStore: StateStore,
     private participantSelectorFactory: ParticipantSelectorFactory,
-    private rangeProofPublisherFactory: RangeProofPublisherFactory
   ) {}
 
   public async start() {
@@ -44,21 +37,6 @@ export class Server implements MpcServer {
 
   public stop() {
     clearInterval(this.interval!);
-
-    if (this.sealer) {
-      this.sealer.cancel();
-      this.sealer = undefined;
-    }
-
-    if (this.publisher) {
-      this.publisher.cancel();
-      this.publisher = undefined;
-    }
-
-    if (this.rangeProofPublisher) {
-      this.rangeProofPublisher.cancel();
-      this.rangeProofPublisher = undefined;
-    }
 
     if (this.participantSelector) {
       this.participantSelector.stop();
@@ -92,8 +70,6 @@ export class Server implements MpcServer {
       startSequence: nextSequence,
       ceremonyState: 'PRESELECTION',
       paused: false,
-      numG1Points: resetState.numG1Points,
-      numG2Points: resetState.numG2Points,
       startTime: resetState.startTime,
       endTime: resetState.endTime,
       network: resetState.network,
@@ -102,7 +78,7 @@ export class Server implements MpcServer {
       maxTier2: resetState.maxTier2,
       minParticipants: resetState.minParticipants,
       invalidateAfter: resetState.invalidateAfter,
-      pointsPerTranscript: resetState.pointsPerTranscript,
+      filesPerTranscript: resetState.filesPerTranscript,
       sealingProgress: 0,
       publishProgress: 0,
       rangeProofKmax: resetState.rangeProofKmax,
@@ -164,9 +140,7 @@ export class Server implements MpcServer {
         delete state.minParticipants;
       case 'RUNNING':
         delete state.startTime;
-        delete state.numG1Points;
-        delete state.numG2Points;
-        delete state.pointsPerTranscript;
+        delete state.filesPerTranscript;
       case 'SELECTED':
         delete state.selectBlock;
         delete state.maxTier2;
@@ -228,9 +202,7 @@ export class Server implements MpcServer {
   private async createVerifier() {
     const verifier = new Verifier(
       this.store,
-      this.state.numG1Points,
-      this.state.numG2Points,
-      this.state.pointsPerTranscript,
+      this.state.filesPerTranscript,
       this.verifierCallback.bind(this)
     );
     const lastCompleteParticipant = this.getLastCompleteParticipant();
@@ -314,19 +286,6 @@ export class Server implements MpcServer {
     try {
       await advanceState(this.state, this.store, this.verifier, moment());
 
-      /*
-      if (this.state.ceremonyState === 'SEALING' && !this.sealer) {
-        this.launchSealer();
-      }
-
-      if (this.state.ceremonyState === 'PUBLISHING' && !this.publisher) {
-        this.launchPublisher();
-      }
-
-      if (this.state.ceremonyState === 'RANGE_PROOFS' && !this.rangeProofPublisher) {
-        this.launchRangeProofsPublisher();
-      }
-      */
       if (this.state.ceremonyState === 'SEALING' && !this.phase2Done) {
         this.state.ceremonyState = 'COMPLETE';
         this.state.completedAt = moment();
@@ -344,63 +303,6 @@ export class Server implements MpcServer {
     }
 
     this.scheduleAdvanceState();
-  }
-
-  private launchSealer() {
-    this.sealer = new Sealer(this.store);
-    this.sealer.on('progress', progress => {
-      this.state.sealingProgress = progress;
-      this.state.sequence += 1;
-      this.state.statusSequence = this.state.sequence;
-    });
-    this.sealer.run(this.state).then(crs => {
-      if (this.state.ceremonyState !== 'SEALING') {
-        // Server was reset.
-        return;
-      }
-      this.state.crs = crs;
-      this.state.ceremonyState = 'PUBLISHING';
-      this.state.sequence += 1;
-      this.state.statusSequence = this.state.sequence;
-    });
-  }
-
-  private launchPublisher() {
-    this.publisher = new Publisher(this.store, this.state);
-    this.publisher.on('progress', progress => {
-      this.state.publishProgress = progress;
-      this.state.sequence += 1;
-      this.state.statusSequence = this.state.sequence;
-    });
-    this.publisher.run().then(publishPath => {
-      if (this.state.ceremonyState !== 'PUBLISHING') {
-        // Server was reset.
-        return;
-      }
-      this.state.ceremonyState = this.state.rangeProofSize ? 'RANGE_PROOFS' : 'COMPLETE';
-      this.state.publishPath = publishPath;
-      this.state.sequence += 1;
-      this.state.statusSequence = this.state.sequence;
-    });
-  }
-
-  private launchRangeProofsPublisher() {
-    this.rangeProofPublisher = this.rangeProofPublisherFactory.create(this.state);
-    this.rangeProofPublisher.on('progress', progress => {
-      this.state.rangeProofProgress = progress;
-      this.state.sequence += 1;
-      this.state.statusSequence = this.state.sequence;
-    });
-    this.rangeProofPublisher.run().then(() => {
-      if (this.state.ceremonyState !== 'RANGE_PROOFS') {
-        // Server was reset.
-        return;
-      }
-      this.state.ceremonyState = 'COMPLETE';
-      this.state.completedAt = moment();
-      this.state.sequence += 1;
-      this.state.statusSequence = this.state.sequence;
-    });
   }
 
   public async ping(address: Address, ip?: string) {

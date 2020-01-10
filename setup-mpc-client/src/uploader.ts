@@ -1,7 +1,8 @@
 import { EventEmitter } from 'events';
-import { unlink } from 'fs';
+import { createReadStream, createWriteStream, unlink } from 'fs';
 import { MemoryFifo, MpcServer } from 'setup-mpc-common';
 import { Address } from 'web3x/address';
+import * as readline from "readline";
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -39,15 +40,16 @@ export class Uploader extends EventEmitter {
   }
 
   private async uploadTranscriptWithRetry(num: number) {
-    const filename = `../setup_db/new/params.params`;
+    const filename = `../setup_db/new/transcript${num}.dat`;
     while (!this.cancelled) {
       try {
         console.error(`Uploading: `, filename);
         await this.server.uploadData(this.address, num, filename, undefined, transferred => {
           this.emit('progress', num, transferred);
         });
-        await new Promise(resolve => unlink(filename, resolve));
+        // await new Promise(resolve => unlink(filename, resolve));
         this.emit('uploaded', num);
+        console.error(`uploaded ${num}`);
         break;
       } catch (err) {
         console.error(`Failed to upload transcript ${num}: ${err.message}`);

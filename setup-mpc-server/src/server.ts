@@ -392,8 +392,9 @@ export class Server implements MpcServer {
     }
 
     await this.store.save(address, transcriptNumber, transcriptPath, signaturePath);
-    p.transcripts[transcriptNumber].state = 'VERIFYING';
-    this.verifier.put({ address, num: transcriptNumber });
+    p.transcripts[transcriptNumber].state = 'RECEIVED';
+    // TODO: check if all transcripts have been RECEIVED. if so, merge and then call the below
+    // this.verifier.put({ address, num: transcriptNumber });
   }
 
   public getAndAssertRunningParticipant(address: Address) {

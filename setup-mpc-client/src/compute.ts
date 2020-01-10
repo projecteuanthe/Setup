@@ -1,10 +1,10 @@
 import { ChildProcessWithoutNullStreams, spawn } from 'child_process';
 import { EventEmitter } from 'events';
+import { createReadStream, createWriteStream } from 'fs';
 import readline from 'readline';
 import { cloneParticipant, MemoryFifo, MpcServer, MpcState, Participant, Transcript } from 'setup-mpc-common';
 import { Downloader } from './downloader';
 import { Uploader } from './uploader';
-import { createReadStream, createWriteStream } from 'fs';
 
 // wrapper object for new and contribute processes
 class ComputeProcess extends EventEmitter {
@@ -228,9 +228,8 @@ export class Compute {
       }
       case 'wrote': {
         this.myState.computeProgress = 100;
-        const transcriptFull = '../setup_db/new/transcript.dat';
-        const lines = await this.countLines(transcriptFull);
-        await this.splitFile(transcriptFull, '../setup_db/new/transcript', ".dat", lines);
+        // TODO: split the file, replace the line below
+        // await this.splitFile(transcriptFull, '../setup_db/new/transcript', ".dat", lines);
         for (let i = 0; i < this.state.filesPerTranscript; i += 1) {
           this.uploader.put(i);
         }
@@ -238,77 +237,5 @@ export class Compute {
       }
     }
   };
-
-  private async splitFile(filenameIn: string, filenameOutPre: string, filenameOutPost: string, lineCount: number) {
-    console.error(`splitting ${lineCount} lines`);
-    let c = 0;
-    const infileName = filenameIn;
-    let fileCount = 0;
-    let count = 0;
-    let outStream : ReturnType<typeof createWriteStream>;
-    let outfileName = filenameOutPre + fileCount + filenameOutPost;
-    newWriteStream();
-    const inStream = createReadStream(infileName);
-    const lineReader = readline.createInterface({
-      input: inStream
-    });
-    function newWriteStream(){
-      outfileName = filenameOutPre + fileCount + filenameOutPost;
-      outStream = createWriteStream(outfileName);
-      count = 0;
-    }
-    lineReader.on('line', (line : string) => {
-      count++;
-      c++;
-      outStream.write(line + '\n');
-      console.error(fileCount + ' ' + count.toString() + ' ' + c.toString());
-      if (count >= lineCount / this.state.filesPerTranscript) {
-        fileCount++;
-        console.error('file ', outfileName, count);
-        outStream.end();
-        newWriteStream();
-      }
-    });
-    lineReader.on('close', () => {
-      if (count > 0) {
-        console.error('Final close:', outfileName, count);
-      }
-      inStream.close();
-      outStream.end();
-      console.error('Done');
-    });
-  }
-
-  public countLines(filename: string): Promise<number> {
-    // function copied from http://stackoverflow.com/questions/12453057/node-js-count-the-number-of-lines-in-a-file
-    // with very few modifications
-    let i;
-    let count = 0;
-    return new Promise((resolve, reject) => {
-      createReadStream(filename)
-        .once('error', e => {
-          console.error("Failed to read file, likely too large and need es instead of fs", e);
-          reject(-1);
-        })
-        .on('data', chunk => {
-          for (i = 0; i < chunk.length; ++i) {
-            if (chunk[i] === 10) {
-              count++;
-            }
-          } // 10 = \n
-        })
-        .once('end', () => resolve(count));
-    });
-  };
-  /*
-  let lineCount = 0;
-  await this.countLines(filename, (lineCountBack) => {lineCount = lineCountBack});
-  console.error(lineCount, " lines"); // await this.splitFiles(filename, 100);
-  await this.splitFiles(filename, "transcript", "idk_man_someone_fix_this.txt", lineCount)
-  */
-
-  public concatFiles(filePre: string, filePost: string, num: number) {
-
-  }
 }
 

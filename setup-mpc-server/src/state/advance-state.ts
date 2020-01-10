@@ -38,9 +38,9 @@ export async function advanceState(state: MpcState, store: TranscriptStore, veri
   // If we have a running participant, mark as invalidated if timed out.
   if (runningParticipant) {
     const { startedAt, tier, lastVerified } = runningParticipant;
-    const { numG1Points, numG2Points, pointsPerTranscript } = state;
     const completeWithin = runningParticipant.invalidateAfter || invalidateAfter;
-    const verifyWithin = 2 * completeWithin / (Math.max(numG1Points, numG2Points) / pointsPerTranscript);
+    // TODO: this value should be set by coordinator
+    const verifyWithin = 1000;
     if (
       moment(now)
         .subtract(completeWithin, 's')

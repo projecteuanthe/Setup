@@ -21,7 +21,6 @@ describe('advance state', () => {
     state = defaultState(1234);
     state.startTime = moment(baseTime).add(5, 's');
     state.endTime = moment(baseTime).add(60, 's');
-    state.pointsPerTranscript = 500000;
     state.participants = addresses.map((a, i) => createParticipant(0, moment(baseTime), i + 1, 1, a));
     mockTranscriptStore.eraseAll = jest.fn().mockResolvedValue(undefined);
     mockTranscriptStore.getVerified = jest.fn();

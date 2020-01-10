@@ -297,9 +297,10 @@ export class TerminalInterface {
       }
     }
 
-    const { invalidateAfter, numG1Points, numG2Points, pointsPerTranscript } = this.state!;
+    const { invalidateAfter } = this.state!;
     const completeWithin = p.invalidateAfter || invalidateAfter;
-    const verifyWithin = (2 * completeWithin) / (Math.max(numG1Points, numG2Points) / pointsPerTranscript);
+    // TODO: this should be a value set by coordinator living in mpcstate
+    const verifyWithin = 1000;
     const verifyTimeout = Math.max(
       0,
       moment(p.lastVerified || p.startedAt!)

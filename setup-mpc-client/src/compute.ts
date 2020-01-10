@@ -1,5 +1,6 @@
 import { ChildProcessWithoutNullStreams, spawn } from 'child_process';
 import { EventEmitter } from 'events';
+import { createReadStream, createWriteStream } from 'fs';
 import readline from 'readline';
 import { cloneParticipant, MemoryFifo, MpcServer, MpcState, Participant, Transcript } from 'setup-mpc-common';
 import { Downloader } from './downloader';
@@ -16,7 +17,7 @@ class ComputeProcess extends EventEmitter {
   public startNew() {
     const binPath = '../setup-tools/new';
     console.error(`Computing with: ${binPath}`);
-    const proc = spawn(binPath, [process.env.SMALL ? 'circuit_small.json' : 'circuit.json', '../setup_db/new/params.params']);
+    const proc = spawn(binPath, [process.env.SMALL ? 'circuit_small.json' : 'circuit.json', '../setup_db/new/transcript.dat']);
     this.proc = proc;
     this.setupListeners();
   }
@@ -24,7 +25,7 @@ class ComputeProcess extends EventEmitter {
   public startContribute() {
     const binPath = '../setup-tools/contribute';
     console.error(`Computing with: ${binPath}`);
-    const proc = spawn(binPath, ['../setup_db/old/params.params', 'asdf', '../setup_db/new/params.params', '100']);
+    const proc = spawn(binPath, ['../setup_db/old/transcript.dat', 'asdf', '../setup_db/new/transcript.dat', '100']);
     this.proc = proc;
     this.setupListeners();
   }
@@ -172,7 +173,7 @@ export class Compute {
       const setupProcess = new ComputeProcess();
       this.setupProc = setupProcess;
 
-      setupProcess.on('line', this.handleSetupOutput);
+      setupProcess.on('line', this.handleSetupOutput.bind(this));
 
       setupProcess.on('stderr', data => {
         console.error(data.toString());
@@ -207,7 +208,7 @@ export class Compute {
     });
   }
 
-  private handleSetupOutput = (data: Buffer) => {
+  private async handleSetupOutput(data: Buffer) {
     console.error('From setup: ', data.toString());
     const params = data
       .toString()
@@ -228,8 +229,12 @@ export class Compute {
         break;
       }
       case 'wrote': {
-        this.uploader.put(0);
         this.myState.computeProgress = 100;
+        // TODO: split the file, replace the line below
+        // await this.splitFile(transcriptFull, '../setup_db/new/transcript', ".dat", lines);
+        for (let i = 0; i < this.state.filesPerTranscript; i += 1) {
+          this.uploader.put(i);
+        }
         break;
       }
     }

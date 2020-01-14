@@ -148,6 +148,7 @@ export interface MpcServer {
   updateParticipant(participant: Participant, admin?: boolean): Promise<void>;
   downloadData(address: Address, transcriptNumber: number): Promise<Readable>;
   downloadSignature(address: Address, num: number): Promise<string>;
+  downloadInitialParams(): Promise<Readable>;
   uploadData(
     address: Address,
     transcriptNumber: number,

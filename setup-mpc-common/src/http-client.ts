@@ -122,6 +122,17 @@ export class HttpClient implements MpcServer {
     return (response.body! as any) as string;
   }
 
+  public async downloadInitialParams() {
+    const response = await fetch(
+      `${this.apiUrl}/initial_params`,
+      this.opts
+    );
+    if (response.status !== 200) {
+      throw new Error(`Download initial params failed, bad status code: ${response.status}`);
+    }
+    return (response.body! as any) as Readable;
+  }
+
   public async uploadData(
     address: Address,
     transcriptNumber: number,

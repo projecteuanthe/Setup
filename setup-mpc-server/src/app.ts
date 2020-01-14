@@ -161,6 +161,10 @@ export function appFactory(
     ctx.body = await server.downloadData(Address.fromString(address.toLowerCase()), num);
   });
 
+  router.get('/initial_params', async (ctx: Koa.Context) => {
+    ctx.body = await server.downloadInitialParams();
+  });
+
   router.put('/data/:address/:num', async (ctx: Koa.Context) => {
     const address = Address.fromString(ctx.params.address.toLowerCase());
     const transcriptNum = +ctx.params.num;

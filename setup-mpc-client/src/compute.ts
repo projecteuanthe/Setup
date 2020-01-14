@@ -13,14 +13,6 @@ class ComputeProcess extends EventEmitter {
     super();
   }
 
-  public startNew() {
-    const binPath = '../setup-tools/new';
-    console.error(`Computing with: ${binPath}`);
-    const proc = spawn(binPath, [process.env.SMALL ? 'circuit_small.json' : 'circuit.json', '../setup_db/new/params.params']);
-    this.proc = proc;
-    this.setupListeners();
-  }
-
   public startContribute() {
     const binPath = '../setup-tools/contribute';
     console.error(`Computing with: ${binPath}`);
@@ -58,6 +50,7 @@ export class Compute {
   private computeQueue: MemoryFifo<string> = new MemoryFifo();
   private downloader: Downloader;
   private uploader: Uploader;
+  private isFirstParticipant: boolean;
 
   constructor(
     private state: MpcState,
@@ -65,7 +58,12 @@ export class Compute {
     server: MpcServer,
     private computeOffline: boolean
   ) {
-    this.downloader = new Downloader(server);
+    const previousParticipant = this.state.participants
+      .slice()
+      .reverse()
+      .find(p => p.state === 'COMPLETE');
+    this.isFirstParticipant = !previousParticipant;
+    this.downloader = new Downloader(server, this.isFirstParticipant);
     this.uploader = new Uploader(server, myState.address);
   }
 
@@ -109,37 +107,16 @@ export class Compute {
   private async populateQueues() {
     this.myState.computeProgress = 0;
 
-    const previousParticipant = this.state.participants
-      .slice()
-      .reverse()
-      .find(p => p.state === 'COMPLETE');
+    this.myState.transcripts.forEach(transcript => {
+      // Reset download and upload progress as we are starting over.
+      if (!this.downloader.isDownloaded(transcript)) {
+        transcript.downloaded = 0;
+      }
+      transcript.uploaded = 0;
 
-    if (previousParticipant) {
-      console.error('Previous participant found.');
-
-      this.myState.transcripts.forEach(transcript => {
-        // Reset download and upload progress as we are starting over.
-        if (!this.downloader.isDownloaded(transcript)) {
-          transcript.downloaded = 0;
-        }
-        transcript.uploaded = 0;
-
-        // Add to downloaded queue regardless of if already downloaded. Will shortcut later in the downloader.
-        this.downloader.put(transcript);
-      });
-
-      this.downloader.end();
-    } else {
-      console.error('We are the first participant.');
-      this.downloader.end();
-
-      this.myState.transcripts.forEach(transcript => {
-        transcript.uploaded = 0;
-      });
-
-      this.computeQueue.put(`create`);
-      this.computeQueue.end();
-    }
+      // Add to downloaded queue regardless of if already downloaded. Will shortcut later in the downloader.
+      this.downloader.put(transcript);
+    });
   }
 
   private async runDownloader() {
@@ -196,11 +173,7 @@ export class Compute {
           break;
         }
         console.error(`Setup command: ${cmd}`);
-        if (cmd === 'create') {
-          setupProcess.startNew();
-        } else if (cmd === 'process') {
-          setupProcess.startContribute();
-        }
+        setupProcess.startContribute();
       }
     });
   }

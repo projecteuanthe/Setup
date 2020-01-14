@@ -28,6 +28,7 @@ describe('app', () => {
       updateParticipant: jest.fn(),
       downloadData: jest.fn(),
       downloadSignature: jest.fn(),
+      downloadInitialParams: jest.fn(),
       uploadData: jest.fn(),
       ping: jest.fn(),
       flushWaiting: jest.fn(),

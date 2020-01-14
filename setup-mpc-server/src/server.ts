@@ -314,19 +314,6 @@ export class Server implements MpcServer {
     try {
       await advanceState(this.state, this.store, this.verifier, moment());
 
-      /*
-      if (this.state.ceremonyState === 'SEALING' && !this.sealer) {
-        this.launchSealer();
-      }
-
-      if (this.state.ceremonyState === 'PUBLISHING' && !this.publisher) {
-        this.launchPublisher();
-      }
-
-      if (this.state.ceremonyState === 'RANGE_PROOFS' && !this.rangeProofPublisher) {
-        this.launchRangeProofsPublisher();
-      }
-      */
       if (this.state.ceremonyState === 'SEALING' && !this.phase2Done) {
         this.state.ceremonyState = 'COMPLETE';
         this.state.completedAt = moment();
@@ -344,63 +331,6 @@ export class Server implements MpcServer {
     }
 
     this.scheduleAdvanceState();
-  }
-
-  private launchSealer() {
-    this.sealer = new Sealer(this.store);
-    this.sealer.on('progress', progress => {
-      this.state.sealingProgress = progress;
-      this.state.sequence += 1;
-      this.state.statusSequence = this.state.sequence;
-    });
-    this.sealer.run(this.state).then(crs => {
-      if (this.state.ceremonyState !== 'SEALING') {
-        // Server was reset.
-        return;
-      }
-      this.state.crs = crs;
-      this.state.ceremonyState = 'PUBLISHING';
-      this.state.sequence += 1;
-      this.state.statusSequence = this.state.sequence;
-    });
-  }
-
-  private launchPublisher() {
-    this.publisher = new Publisher(this.store, this.state);
-    this.publisher.on('progress', progress => {
-      this.state.publishProgress = progress;
-      this.state.sequence += 1;
-      this.state.statusSequence = this.state.sequence;
-    });
-    this.publisher.run().then(publishPath => {
-      if (this.state.ceremonyState !== 'PUBLISHING') {
-        // Server was reset.
-        return;
-      }
-      this.state.ceremonyState = this.state.rangeProofSize ? 'RANGE_PROOFS' : 'COMPLETE';
-      this.state.publishPath = publishPath;
-      this.state.sequence += 1;
-      this.state.statusSequence = this.state.sequence;
-    });
-  }
-
-  private launchRangeProofsPublisher() {
-    this.rangeProofPublisher = this.rangeProofPublisherFactory.create(this.state);
-    this.rangeProofPublisher.on('progress', progress => {
-      this.state.rangeProofProgress = progress;
-      this.state.sequence += 1;
-      this.state.statusSequence = this.state.sequence;
-    });
-    this.rangeProofPublisher.run().then(() => {
-      if (this.state.ceremonyState !== 'RANGE_PROOFS') {
-        // Server was reset.
-        return;
-      }
-      this.state.ceremonyState = 'COMPLETE';
-      this.state.completedAt = moment();
-      this.state.sequence += 1;
-      this.state.statusSequence = this.state.sequence;
-    });
   }
 
   public async ping(address: Address, ip?: string) {
@@ -462,6 +392,10 @@ export class Server implements MpcServer {
     } finally {
       release();
     }
+  }
+
+  public async downloadInitialParams() {
+    return this.store.loadInitialParams();
   }
 
   public async downloadData(address: Address, num: number) {

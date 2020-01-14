@@ -80,35 +80,29 @@ export class Verifier {
   private async verifyTranscript(address: Address, transcriptNumber: number, transcriptPath: string) {
     console.log(`Verifiying transcript ${transcriptNumber}...`);
     return new Promise<boolean>(resolve => {
-      if (this.lastCompleteAddress) {
-        // call verify_contribution if this is not the first transcript
-        const args = [
-          process.env.SMALL ? 'circuit_small.json' : 'circuit.json',
-          this.store.getVerifiedTranscriptPath(this.lastCompleteAddress, 0),
-          this.store.getUnverifiedTranscriptPath(address, 0)
-        ];
-        const binPath = '../setup-tools/verify_contribution';
-        const verify = spawn(binPath, args);
-        this.proc = verify;
+      // call verify_contribution if this is not the first transcript
+      const args = [
+        process.env.SMALL ? 'initial/circuit_small.json' : 'initial/circuit.json',
+        this.lastCompleteAddress ? this.store.getVerifiedTranscriptPath(this.lastCompleteAddress, 0) : this.store.getInitialParametersPath(),
+        this.store.getUnverifiedTranscriptPath(address, 0),
+        'initial'
+      ];
+      const binPath = '../setup-tools/verify_contribution';
+      const verify = spawn(binPath, args);
+      this.proc = verify;
 
-        verify.stdout.on('data', data => {
-          console.log(data.toString());
-        });
+      verify.stdout.on('data', data => {
+        console.log(data.toString());
+      });
 
-        verify.stderr.on('data', data => {
-          console.log(data.toString());
-        });
+      verify.stderr.on('data', data => {
+        console.log(data.toString());
+      });
 
-        verify.on('close', code => {
-          this.proc = undefined;
-          resolve(code === 0);
-        });
-      } else {
-        // otherwise, just accept
-        // TODO: first participant should add in their own randomness
+      verify.on('close', code => {
         this.proc = undefined;
-        resolve(true);
-      }
+        resolve(code === 0);
+      });
     });
   }
 }

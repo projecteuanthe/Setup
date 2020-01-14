@@ -9,7 +9,7 @@ export class Downloader extends EventEmitter {
   private cancelled = false;
   private queue: MemoryFifo<Transcript> = new MemoryFifo();
 
-  constructor(private server: MpcServer) {
+  constructor(private server: MpcServer, private isFirstParticipant: boolean) {
     super();
   }
 
@@ -41,10 +41,11 @@ export class Downloader extends EventEmitter {
   public isDownloaded(transcript: Transcript) {
     const filename = `../setup_db/old/params.params`;
     if (existsSync(filename)) {
-      const stat = statSync(filename);
-      if (stat.size === transcript.size && transcript.downloaded === transcript.size) {
-        return true;
-      }
+      // const stat = statSync(filename);
+      return true;
+      // if (stat.size === transcript.size && transcript.downloaded === transcript.size) {
+      //   return true;
+      // }
     }
   }
 
@@ -67,7 +68,7 @@ export class Downloader extends EventEmitter {
     if (this.isDownloaded(transcript)) {
       return;
     }
-    const readStream = await this.server.downloadData(transcript.fromAddress!, transcript.num);
+    const readStream = this.isFirstParticipant ? await this.server.downloadInitialParams() : await this.server.downloadData(transcript.fromAddress!, transcript.num);
     const progStream = progress({ length: transcript.size, time: 1000 });
     const writeStream = createWriteStream(filename);
 

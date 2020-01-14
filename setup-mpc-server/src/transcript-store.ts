@@ -1,5 +1,5 @@
 import { createReadStream, mkdirSync } from 'fs';
-import moment = require('moment');
+import * as fs from 'fs';
 import { Readable } from 'stream';
 import { Address } from 'web3x/address';
 import {
@@ -23,12 +23,15 @@ export interface TranscriptStoreRecord {
 export interface TranscriptStore {
   save(address: Address, num: number, transcriptPath: string, signaturePath: string): Promise<void>;
   loadTranscript(address: Address, num: number): Readable;
+  loadInitialParams(): Readable;
   getTranscriptSignature(address: Address, num: number): Promise<string>;
   makeLive(address: Address): Promise<void>;
+  getInitialParametersPath(): string;
   getVerifiedTranscriptPath(address: Address, num: number): string;
   getVerifiedSignaturePath(address: Address, num: number): string;
   getUnverifiedTranscriptPath(address: Address, num: number): string;
   getUnverifiedSignaturePath(address: Address, num: number): string;
+  initialParamsExists(): Promise<boolean>;
   getVerified(address: Address, includeSignatures?: boolean): Promise<TranscriptStoreRecord[]>;
   getUnverified(address: Address, includeSignatures?: boolean): Promise<TranscriptStoreRecord[]>;
   eraseAll(address: Address): Promise<void>;
@@ -53,6 +56,7 @@ export class DiskTranscriptStoreFactory implements TranscriptStoreFactory {
 }
 
 export class DiskTranscriptStore implements TranscriptStore {
+  private initialParamsPath: string;
   private unverifiedPath: string;
   private verifiedPath: string;
   private sealingPath: string;
@@ -60,10 +64,12 @@ export class DiskTranscriptStore implements TranscriptStore {
   private fileRegex = /transcript(\d+).(dat|sig)$/;
 
   constructor(private storePath: string) {
+    this.initialParamsPath = storePath + '/../../initial';
     this.verifiedPath = storePath + '/verified';
     this.unverifiedPath = storePath + '/unverified';
     this.sealingPath = storePath + '/sealed';
     this.generatorsPath = storePath + '/../generators';
+    mkdirSync(this.initialParamsPath, { recursive: true });
     mkdirSync(this.verifiedPath, { recursive: true });
     mkdirSync(this.unverifiedPath, { recursive: true });
     mkdirSync(this.sealingPath, { recursive: true });
@@ -84,6 +90,10 @@ export class DiskTranscriptStore implements TranscriptStore {
     return createReadStream(this.getVerifiedTranscriptPath(address, num));
   }
 
+  public loadInitialParams() {
+    return createReadStream(this.getInitialParametersPath());
+  }
+
   public async getTranscriptSignature(address: Address, num: number) {
     return (await readFileAsync(this.getVerifiedSignaturePath(address, num))).toString();
   }
@@ -94,6 +104,10 @@ export class DiskTranscriptStore implements TranscriptStore {
 
   private getUnverifiedBasePath(address: Address) {
     return `${this.unverifiedPath}/${address.toString().toLowerCase()}`;
+  }
+
+  public getInitialParametersPath() {
+    return `${this.initialParamsPath}/initial_params`
   }
 
   public getVerifiedTranscriptPath(address: Address, num: number) {
@@ -133,6 +147,14 @@ export class DiskTranscriptStore implements TranscriptStore {
       })
     );
     return results.sort((a, b) => a.num - b.num);
+  }
+
+  public async initialParamsExists() {
+    return new Promise<boolean>((resolve) => {
+      fs.access(this.getInitialParametersPath(), fs.constants.F_OK, (err) => {
+        resolve(!err);
+      })
+    })
   }
 
   public async getVerified(address: Address, includeSignatures?: boolean) {

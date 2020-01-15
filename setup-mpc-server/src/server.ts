@@ -4,9 +4,6 @@ import { cloneMpcState, EthNet, MpcServer, MpcState, Participant, PatchState, Re
 import { Address } from 'web3x/address';
 import { getGeoData } from './maxmind';
 import { ParticipantSelector, ParticipantSelectorFactory } from './participant-selector';
-import { Publisher } from './publisher';
-import { RangeProofPublisher, RangeProofPublisherFactory } from './range-proof-publisher';
-import { Sealer } from './sealer';
 import { StateStore } from './state-store';
 import { advanceState } from './state/advance-state';
 import { createParticipant } from './state/create-participant';
@@ -23,17 +20,13 @@ export class Server implements MpcServer {
   private readState!: MpcState;
   private mutex = new Mutex();
   private participantSelector?: ParticipantSelector;
-  private sealer?: Sealer;
-  private publisher?: Publisher;
-  private rangeProofPublisher?: RangeProofPublisher;
   private store!: TranscriptStore;
   private phase2Done = false;
 
   constructor(
     private storeFactory: TranscriptStoreFactory,
     private stateStore: StateStore,
-    private participantSelectorFactory: ParticipantSelectorFactory,
-    private rangeProofPublisherFactory: RangeProofPublisherFactory
+    private participantSelectorFactory: ParticipantSelectorFactory
   ) {}
 
   public async start() {
@@ -44,21 +37,6 @@ export class Server implements MpcServer {
 
   public stop() {
     clearInterval(this.interval!);
-
-    if (this.sealer) {
-      this.sealer.cancel();
-      this.sealer = undefined;
-    }
-
-    if (this.publisher) {
-      this.publisher.cancel();
-      this.publisher = undefined;
-    }
-
-    if (this.rangeProofPublisher) {
-      this.rangeProofPublisher.cancel();
-      this.rangeProofPublisher = undefined;
-    }
 
     if (this.participantSelector) {
       this.participantSelector.stop();
@@ -92,8 +70,6 @@ export class Server implements MpcServer {
       startSequence: nextSequence,
       ceremonyState: 'PRESELECTION',
       paused: false,
-      numG1Points: resetState.numG1Points,
-      numG2Points: resetState.numG2Points,
       startTime: resetState.startTime,
       endTime: resetState.endTime,
       network: resetState.network,
@@ -102,14 +78,7 @@ export class Server implements MpcServer {
       maxTier2: resetState.maxTier2,
       minParticipants: resetState.minParticipants,
       invalidateAfter: resetState.invalidateAfter,
-      pointsPerTranscript: resetState.pointsPerTranscript,
-      sealingProgress: 0,
-      publishProgress: 0,
-      rangeProofKmax: resetState.rangeProofKmax,
-      rangeProofSize: resetState.rangeProofSize,
-      rangeProofProgress: 0,
-      rangeProofsPerFile: resetState.rangeProofsPerFile,
-      participants: [],
+      participants: []
     };
 
     if (resetState.participants0.length) {
@@ -153,20 +122,8 @@ export class Server implements MpcServer {
     const release = await this.mutex.acquire();
     switch (this.state.ceremonyState) {
       case 'COMPLETE':
-      case 'RANGE_PROOFS':
-        delete state.rangeProofKmax;
-        delete state.rangeProofSize;
-        delete state.rangeProofsPerFile;
-      case 'PUBLISHING':
-      case 'SEALING':
-        delete state.endTime;
-        delete state.invalidateAfter;
-        delete state.minParticipants;
       case 'RUNNING':
         delete state.startTime;
-        delete state.numG1Points;
-        delete state.numG2Points;
-        delete state.pointsPerTranscript;
       case 'SELECTED':
         delete state.selectBlock;
         delete state.maxTier2;
@@ -228,9 +185,6 @@ export class Server implements MpcServer {
   private async createVerifier() {
     const verifier = new Verifier(
       this.store,
-      this.state.numG1Points,
-      this.state.numG2Points,
-      this.state.pointsPerTranscript,
       this.verifierCallback.bind(this)
     );
     const lastCompleteParticipant = this.getLastCompleteParticipant();

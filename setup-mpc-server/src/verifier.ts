@@ -17,9 +17,6 @@ export class Verifier {
 
   constructor(
     private store: TranscriptStore,
-    private numG1Points: number,
-    private numG2Points: number,
-    private pointsPerTranscript: number,
     private cb: (address: Address, num: number, verified: boolean) => Promise<void>
   ) {}
 

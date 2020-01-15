@@ -3,13 +3,12 @@ import { Address } from 'web3x/address';
 import { appFactory } from './app';
 import { mkdirAsync } from './fs-async';
 import { ParticipantSelectorFactory } from './participant-selector';
-import { RangeProofPublisherFactory } from './range-proof-publisher';
 import { Server } from './server';
 import { DiskStateStore } from './state-store';
 import { defaultState } from './state/default-state';
 import { DiskTranscriptStoreFactory } from './transcript-store';
 
-const { PORT = 80, STORE_PATH = './store', INFURA_API_KEY = 'fe576c8bab174752bd0d963c89d5d7a2', JOB_SERVER_HOST = 'job-server' } = process.env;
+const { PORT = 80, STORE_PATH = './store', INFURA_API_KEY = 'fe576c8bab174752bd0d963c89d5d7a2' } = process.env;
 
 async function main() {
   const shutdown = async () => process.exit(0);
@@ -22,9 +21,8 @@ async function main() {
   const defaults = defaultState(latestBlock);
   const stateStore = new DiskStateStore(STORE_PATH + '/state', defaults);
   const transcriptStoreFactory = new DiskTranscriptStoreFactory(STORE_PATH);
-  const rangeProofPublisherFactory = new RangeProofPublisherFactory(JOB_SERVER_HOST);
 
-  const server = new Server(transcriptStoreFactory, stateStore, participantSelectorFactory, rangeProofPublisherFactory);
+  const server = new Server(transcriptStoreFactory, stateStore, participantSelectorFactory);
   await server.start();
 
   const tmpPath = STORE_PATH + '/tmp';

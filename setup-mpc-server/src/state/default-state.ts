@@ -16,16 +16,7 @@ export function defaultState(latestBlock: number): MpcState {
     selectBlock: latestBlock + 1,
     maxTier2: 0,
     minParticipants: 5,
-    numG1Points: 1000000,
-    numG2Points: 1,
-    pointsPerTranscript: 100000,
     invalidateAfter: 180,
-    sealingProgress: 0,
-    publishProgress: 0,
-    rangeProofKmax: 100000,
-    rangeProofSize: 100000,
-    rangeProofProgress: 0,
-    rangeProofsPerFile: 1024,
     participants: [],
   };
 }

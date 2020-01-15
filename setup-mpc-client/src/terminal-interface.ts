@@ -47,7 +47,7 @@ export class TerminalInterface {
 
     const { startTime, completedAt } = this.state;
 
-    const { ceremonyState, sealingProgress, publishProgress, rangeProofProgress, rangeProofSize } = this.state;
+    const { ceremonyState } = this.state;
     switch (ceremonyState) {
       case 'PRESELECTION':
       case 'SELECTED': {
@@ -61,19 +61,6 @@ export class TerminalInterface {
         this.term.white(
           `The ceremony is in progress and started at ${startTime.utc().format('MMM Do YYYY HH:mm:ss')} UTC.\n\n`
         );
-        break;
-      case 'SEALING':
-        if (sealingProgress < 100) {
-          this.term.white(`Sealing final transcripts: ${sealingProgress.toFixed(2)}%\n\n`);
-        } else {
-          this.term.white('Computing H parameter...\n\n');
-        }
-        break;
-      case 'PUBLISHING':
-        this.term.white(`Publishing transcripts to S3: ${publishProgress.toFixed(2)}%\n\n`);
-        break;
-      case 'RANGE_PROOFS':
-        this.term.white(`Computing range proofs: ${((rangeProofProgress * 100) / rangeProofSize).toFixed(2)}%\n\n`);
         break;
       case 'COMPLETE': {
         const completedStr = `${completedAt!.utc().format('MMM Do YYYY HH:mm:ss')} UTC`;
@@ -297,9 +284,10 @@ export class TerminalInterface {
       }
     }
 
-    const { invalidateAfter, numG1Points, numG2Points, pointsPerTranscript } = this.state!;
+    const { invalidateAfter }  = this.state!;
     const completeWithin = p.invalidateAfter || invalidateAfter;
-    const verifyWithin = (2 * completeWithin) / (Math.max(numG1Points, numG2Points) / pointsPerTranscript);
+    // TODO: should be set in MPC state
+    const verifyWithin = 1000;
     const verifyTimeout = Math.max(
       0,
       moment(p.lastVerified || p.startedAt!)

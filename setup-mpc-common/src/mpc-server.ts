@@ -80,9 +80,6 @@ export interface MpcState {
   paused: boolean;
   maxTier2: number;
   minParticipants: number;
-  numG1Points: number;
-  numG2Points: number;
-  pointsPerTranscript: number;
   invalidateAfter: number;
   startTime: Moment;
   endTime: Moment;
@@ -90,14 +87,6 @@ export interface MpcState {
   latestBlock: number;
   selectBlock: number;
   completedAt?: Moment;
-  sealingProgress: number;
-  publishProgress: number;
-  rangeProofKmax: number;
-  rangeProofSize: number;
-  rangeProofProgress: number;
-  rangeProofsPerFile: number;
-  crs?: CRS;
-  publishPath?: string;
   participants: Participant[];
 }
 
@@ -110,12 +99,6 @@ export interface ResetState {
   selectBlock: number;
   maxTier2: number;
   minParticipants: number;
-  numG1Points: number;
-  numG2Points: number;
-  pointsPerTranscript: number;
-  rangeProofKmax: number;
-  rangeProofSize: number;
-  rangeProofsPerFile: number;
   invalidateAfter: number;
   participants0: Address[];
   participants1: Address[];
@@ -129,13 +112,7 @@ export interface PatchState {
   selectBlock?: number;
   maxTier2?: number;
   minParticipants?: number;
-  numG1Points?: number;
-  numG2Points?: number;
-  pointsPerTranscript?: number;
   invalidateAfter?: number;
-  rangeProofKmax: number;
-  rangeProofSize: number;
-  rangeProofsPerFile: number;
 }
 
 export interface MpcServer {

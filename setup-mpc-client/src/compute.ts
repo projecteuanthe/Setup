@@ -195,6 +195,14 @@ export class Compute {
       .split(' ');
     const cmd = params.shift()!;
     switch (cmd) {
+      case 'starting': {
+        // downloading done, starting process
+        fs.stat('../setup_db/old/params.params', (_, stats) => {
+          this.myState.transcripts[0].size = stats.size;
+          this.myState.transcripts[0].downloaded = stats.size;
+        });
+        break;
+      }
       case 'progress': {
         const computedPoints = +params[0];
         const totalPoints = +params[1];
@@ -209,6 +217,7 @@ export class Compute {
           // however we cannot put this.uploader.put(0) in this callback, because the uploader queue gets ended
           // as soon as the process is closed
           this.myState.transcripts[0].size = stats.size;
+          this.myState.transcripts[0].downloaded = stats.size; // in case size changed, else terminal won't show 100% downloaded
         });
         break;
       }

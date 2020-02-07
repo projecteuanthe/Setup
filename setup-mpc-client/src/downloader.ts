@@ -68,7 +68,9 @@ export class Downloader extends EventEmitter {
     if (this.isDownloaded(transcript)) {
       return;
     }
-    const readStream = this.isFirstParticipant ? await this.server.downloadInitialParams() : await this.server.downloadData(transcript.fromAddress!, transcript.num);
+    const readStream = this.isFirstParticipant
+      ? await this.server.downloadInitialParams()
+      : await this.server.downloadData(transcript.fromAddress!, transcript.num);
     const progStream = progress({ length: transcript.size, time: 1000 });
     const writeStream = createWriteStream(filename);
 

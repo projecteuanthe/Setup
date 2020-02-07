@@ -4,6 +4,7 @@ import readline from 'readline';
 import { cloneParticipant, MemoryFifo, MpcServer, MpcState, Participant, Transcript } from 'setup-mpc-common';
 import { Downloader } from './downloader';
 import { Uploader } from './uploader';
+import * as fs from 'fs';
 
 // wrapper object for new and contribute processes
 class ComputeProcess extends EventEmitter {
@@ -16,7 +17,7 @@ class ComputeProcess extends EventEmitter {
   public startContribute() {
     const binPath = '../setup-tools/contribute';
     console.error(`Computing with: ${binPath}`);
-    const proc = spawn(binPath, ['../setup_db/old/params.params', 'asdf', '../setup_db/new/params.params', '100']);
+    const proc = spawn(binPath, ['../setup_db/old/params.params', '', '../setup_db/new/params.params', '100']);
     this.proc = proc;
     this.setupListeners();
   }
@@ -28,13 +29,21 @@ class ComputeProcess extends EventEmitter {
           input: this.proc.stdout,
           terminal: false,
         })
-        .on('line', input => { this.emit('line', input) });
+        .on('line', input => {
+          this.emit('line', input);
+        });
 
-      this.proc.stderr.on('data', data => { this.emit('stderr', data) });
+      this.proc.stderr.on('data', data => {
+        this.emit('stderr', data);
+      });
 
-      this.proc.on('close', code => { this.emit('close', code) });
+      this.proc.on('close', code => {
+        this.emit('close', code);
+      });
 
-      this.proc.on('error', (...args) => { this.emit('error', ...args) });
+      this.proc.on('error', (...args) => {
+        this.emit('error', ...args);
+      });
     }
   }
 
@@ -186,24 +195,23 @@ export class Compute {
       .split(' ');
     const cmd = params.shift()!;
     switch (cmd) {
-      case 'creating': {
-        const transcript = this.myState.transcripts[0];
-        transcript.size = 100;
-        transcript.downloaded = 100;
-        break;
-      }
       case 'progress': {
         const computedPoints = +params[0];
         const totalPoints = +params[1];
-        this.myState.computeProgress += 100 * computedPoints / totalPoints;
+        this.myState.computeProgress += (100 * computedPoints) / totalPoints;
         break;
       }
       case 'wrote': {
         this.uploader.put(0);
         this.myState.computeProgress = 100;
+        fs.stat('../setup_db/new/params.params', (_, stats) => {
+          // note that there will be a brief interval before this is calculated where transcript.size is stale
+          // however we cannot put this.uploader.put(0) in this callback, because the uploader queue gets ended
+          // as soon as the process is closed
+          this.myState.transcripts[0].size = stats.size;
+        });
         break;
       }
     }
   };
 }
-

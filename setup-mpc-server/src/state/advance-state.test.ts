@@ -24,6 +24,7 @@ describe('advance state', () => {
     state.participants = addresses.map((a, i) => createParticipant(0, moment(baseTime), i + 1, 1, a));
     mockTranscriptStore.eraseAll = jest.fn().mockResolvedValue(undefined);
     mockTranscriptStore.getVerified = jest.fn();
+    mockTranscriptStore.getInitialParamsSize = jest.fn().mockResolvedValue(20);
   });
 
   it('should mark participants that have not pinged in 10s offline', async () => {
@@ -125,11 +126,11 @@ describe('advance state', () => {
     expect(state.participants[0].transcripts).toEqual([
       {
         num: 0,
-        size: 0,
+        size: 20,
         downloaded: 0,
         uploaded: 0,
         state: 'WAITING',
-      }
+      },
     ]);
   });
 
@@ -144,7 +145,10 @@ describe('advance state', () => {
   });
 
   it('should shift next waiting online participant to running state', async () => {
-    mockTranscriptStore.getVerified!.mockResolvedValue([{ num: 0, size: 1000 }, { num: 1, size: 1005 }]);
+    mockTranscriptStore.getVerified!.mockResolvedValue([
+      { num: 0, size: 1000 },
+      { num: 1, size: 1005 },
+    ]);
 
     state.ceremonyState = 'RUNNING';
     state.participants[0].state = 'COMPLETE';

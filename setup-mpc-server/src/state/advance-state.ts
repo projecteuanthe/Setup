@@ -94,11 +94,12 @@ async function getRunningParticipantsTranscripts(state: MpcState, store: Transcr
     .find(p => p.state === 'COMPLETE');
 
   if (!lastCompletedParticipant) {
+    const initialParamsSize = await store.getInitialParamsSize();
     return Array(1)
       .fill(0)
       .map((_, num) => ({
         num,
-        size: 0,
+        size: initialParamsSize,
         downloaded: 0,
         uploaded: 0,
         state: 'WAITING',

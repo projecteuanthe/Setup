@@ -24,6 +24,7 @@ export interface TranscriptStore {
   save(address: Address, num: number, transcriptPath: string, signaturePath: string): Promise<void>;
   loadTranscript(address: Address, num: number): Readable;
   loadInitialParams(): Readable;
+  getInitialParamsSize(): Promise<number>;
   getTranscriptSignature(address: Address, num: number): Promise<string>;
   makeLive(address: Address): Promise<void>;
   getInitialParametersPath(): string;
@@ -37,10 +38,6 @@ export interface TranscriptStore {
   eraseAll(address: Address): Promise<void>;
   eraseUnverified(address: Address, num?: number): Promise<void>;
   copyVerifiedTo(address: Address, path: string): Promise<void>;
-  getGeneratorPath(size: number): string;
-  getSealedPath(): string;
-  getSealed(): Promise<TranscriptStoreRecord[]>;
-  getG1xPrepPath(): string;
 }
 
 export interface TranscriptStoreFactory {
@@ -60,7 +57,6 @@ export class DiskTranscriptStore implements TranscriptStore {
   private unverifiedPath: string;
   private verifiedPath: string;
   private sealingPath: string;
-  private generatorsPath: string;
   private fileRegex = /transcript(\d+).(dat|sig)$/;
 
   constructor(private storePath: string) {
@@ -68,12 +64,10 @@ export class DiskTranscriptStore implements TranscriptStore {
     this.verifiedPath = storePath + '/verified';
     this.unverifiedPath = storePath + '/unverified';
     this.sealingPath = storePath + '/sealed';
-    this.generatorsPath = storePath + '/../generators';
     mkdirSync(this.initialParamsPath, { recursive: true });
     mkdirSync(this.verifiedPath, { recursive: true });
     mkdirSync(this.unverifiedPath, { recursive: true });
     mkdirSync(this.sealingPath, { recursive: true });
-    mkdirSync(this.generatorsPath, { recursive: true });
   }
 
   public async save(address: Address, num: number, transcriptPath: string, signaturePath: string) {
@@ -94,6 +88,14 @@ export class DiskTranscriptStore implements TranscriptStore {
     return createReadStream(this.getInitialParametersPath());
   }
 
+  public getInitialParamsSize() {
+    return new Promise<number>(resolve => {
+      fs.stat(this.getInitialParametersPath(), (_, stats) => {
+        resolve(stats.size);
+      });
+    });
+  }
+
   public async getTranscriptSignature(address: Address, num: number) {
     return (await readFileAsync(this.getVerifiedSignaturePath(address, num))).toString();
   }
@@ -107,7 +109,7 @@ export class DiskTranscriptStore implements TranscriptStore {
   }
 
   public getInitialParametersPath() {
-    return `${this.initialParamsPath}/initial_params`
+    return `${this.initialParamsPath}/initial_params`;
   }
 
   public getVerifiedTranscriptPath(address: Address, num: number) {
@@ -150,11 +152,11 @@ export class DiskTranscriptStore implements TranscriptStore {
   }
 
   public async initialParamsExists() {
-    return new Promise<boolean>((resolve) => {
-      fs.access(this.getInitialParametersPath(), fs.constants.F_OK, (err) => {
+    return new Promise<boolean>(resolve => {
+      fs.access(this.getInitialParametersPath(), fs.constants.F_OK, err => {
         resolve(!err);
-      })
-    })
+      });
+    });
   }
 
   public async getVerified(address: Address, includeSignatures?: boolean) {
@@ -212,21 +214,5 @@ export class DiskTranscriptStore implements TranscriptStore {
       await copyFileAsync(this.getVerifiedTranscriptPath(address, num), `${path}/transcript${num}.dat`);
       ++num;
     }
-  }
-
-  public getSealedPath() {
-    return this.sealingPath;
-  }
-
-  public async getSealed() {
-    return this.getDirRecords(this.sealingPath, false);
-  }
-
-  public getGeneratorPath(size: number) {
-    return `${this.generatorsPath}/generator${size}.dat`;
-  }
-
-  public getG1xPrepPath() {
-    return `${this.storePath}/g1x_prep.dat`;
   }
 }

@@ -187,7 +187,7 @@ export class Compute {
   }
 
   private handleSetupOutput = (data: Buffer) => {
-    console.error('From setup: ', data.toString());
+    console.error('From contribute: ', data.toString());
     const params = data
       .toString()
       .replace('\n', '')

@@ -234,11 +234,7 @@ export class TerminalInterface {
     term.yellow(addrString.slice(0, progIndex)).grey(addrString.slice(progIndex));
     term.grey(` (${p.priority})`);
 
-    if (p.fast) {
-      term.magentaBright(' <');
-    } else {
-      term.red(' <');
-    }
+    term.red(' <');
     if (p.lastUpdate || p.runningState === 'OFFLINE') {
       switch (p.runningState) {
         case 'OFFLINE':
@@ -284,7 +280,7 @@ export class TerminalInterface {
       }
     }
 
-    const { invalidateAfter }  = this.state!;
+    const { invalidateAfter } = this.state!;
     const completeWithin = p.invalidateAfter || invalidateAfter;
     // TODO: should be set in MPC state
     const verifyWithin = 1000;

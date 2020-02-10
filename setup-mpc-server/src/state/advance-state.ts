@@ -21,7 +21,7 @@ export async function advanceState(state: MpcState, store: TranscriptStore, veri
     return;
   }
 
-  // If we've not yet hit our selection block, or are sealing/publishing. Do nothing.
+  // If we've not yet hit our selection block, or are complete. Do nothing.
   if (state.ceremonyState !== 'SELECTED' && state.ceremonyState !== 'RUNNING') {
     return;
   }
@@ -39,8 +39,7 @@ export async function advanceState(state: MpcState, store: TranscriptStore, veri
   if (runningParticipant) {
     const { startedAt, tier, lastVerified } = runningParticipant;
     const completeWithin = runningParticipant.invalidateAfter || invalidateAfter;
-    // TODO: this should be a parameter set in MPC server
-    const verifyWithin = 1000;
+    const verifyWithin = 2 * completeWithin;
     if (
       moment(now)
         .subtract(completeWithin, 's')
@@ -61,14 +60,15 @@ export async function advanceState(state: MpcState, store: TranscriptStore, veri
     }
   }
 
-  // If at least min participants reached and after end date, shift ceremony to sealing state.
+  // If at least min participants reached and after end date, ceremony is completed
   if (
     !runningParticipant &&
     state.participants.reduce((a, p) => (p.state === 'COMPLETE' ? a + 1 : a), 0) >= state.minParticipants &&
     now.isSameOrAfter(state.endTime)
   ) {
     state.statusSequence = nextSequence;
-    state.ceremonyState = 'SEALING';
+    state.ceremonyState = 'COMPLETE';
+    state.completedAt = moment();
     state.sequence = nextSequence;
     return;
   }

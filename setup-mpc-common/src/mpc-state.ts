@@ -1,13 +1,14 @@
 import moment from 'moment';
 import { Address } from 'web3x/address';
-import { MpcState, Participant } from './mpc-server';
+import { MpcState, Participant, MpcStateSummary } from './mpc-server';
 
 export function mpcStateFromJSON(json: any): MpcState {
-  const { startTime, completedAt, participants, ...rest } = json;
+  const { startTime, endTime, completedAt, participants, ...rest } = json;
 
   return {
     ...rest,
     startTime: moment(startTime),
+    endTime: moment(endTime),
     completedAt: completedAt ? moment(completedAt) : undefined,
     participants: participants.map(({ startedAt, lastUpdate, completedAt, address, transcripts, ...rest }: any) => ({
       ...rest,
@@ -20,6 +21,17 @@ export function mpcStateFromJSON(json: any): MpcState {
         fromAddress: fromAddress ? Address.fromString(fromAddress) : undefined,
       })),
     })),
+  };
+}
+
+export function mpcStateSummaryFromJSON(json: any): MpcStateSummary {
+  const { startTime, endTime, completedAt, participants, ...rest } = json;
+  return {
+    ...rest,
+    startTime: moment(startTime),
+    endTime: moment(endTime),
+    completedAt: completedAt ? moment(completedAt) : undefined,
+    numParticipants: participants.length,
   };
 }
 

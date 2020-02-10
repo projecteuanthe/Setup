@@ -152,7 +152,6 @@ export class Compute {
 
   private async compute() {
     return new Promise(async (resolve, reject) => {
-      this.myState.fast = false;
       const setupProcess = new ComputeProcess();
       this.setupProc = setupProcess;
 

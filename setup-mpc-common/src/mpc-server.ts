@@ -2,14 +2,7 @@ import { Moment } from 'moment';
 import { Readable } from 'stream';
 import { Address } from 'web3x/address';
 
-export type CeremonyState =
-  | 'PRESELECTION'
-  | 'SELECTED'
-  | 'RUNNING'
-  | 'SEALING'
-  | 'PUBLISHING'
-  | 'RANGE_PROOFS'
-  | 'COMPLETE';
+export type CeremonyState = 'PRESELECTION' | 'SELECTED' | 'RUNNING' | 'COMPLETE';
 export type ParticipantState = 'WAITING' | 'RUNNING' | 'COMPLETE' | 'INVALIDATED';
 export type ParticipantRunningState = 'OFFLINE' | 'WAITING' | 'RUNNING' | 'COMPLETE';
 export type TranscriptState = 'WAITING' | 'VERIFYING' | 'COMPLETE';
@@ -24,14 +17,6 @@ export interface Transcript {
   downloaded: number;
   uploaded: number;
 }
-
-export type G1 = [string, string];
-export type G2 = [string, string, string, string];
-
-export type CRS = {
-  h: G1;
-  t2: G2;
-};
 
 export interface Participant {
   // Server controlled data.
@@ -58,7 +43,6 @@ export interface Participant {
   runningState: ParticipantRunningState;
   transcripts: Transcript[]; // Except 'complete'.
   computeProgress: number;
-  fast: boolean;
 }
 
 export interface ParticipantLocation {
@@ -88,6 +72,20 @@ export interface MpcState {
   selectBlock: number;
   completedAt?: Moment;
   participants: Participant[];
+}
+
+export interface MpcStateSummary {
+  name: string;
+  ceremonyState: CeremonyState;
+  paused: boolean;
+  maxTier2: number;
+  minParticipants: number;
+  startTime: Moment;
+  endTime: Moment;
+  selectBlock: number;
+  completedAt?: Moment;
+  numParticipants: number;
+  ceremonyProgress: number; // total progress
 }
 
 export interface ResetState {
@@ -120,6 +118,7 @@ export interface MpcServer {
   loadState(name: string): Promise<void>;
   patchState(state: PatchState): Promise<MpcState>;
   getState(sequence?: number): Promise<MpcState>;
+  getStateSummary(): Promise<MpcStateSummary>;
   ping(address: Address, ip?: string): Promise<void>;
   addParticipant(address: Address, tier: number): Promise<void>;
   updateParticipant(participant: Participant, admin?: boolean): Promise<void>;

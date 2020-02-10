@@ -87,7 +87,6 @@ export class App {
       remote.runningState = local.runningState;
       remote.transcripts = local.transcripts;
       remote.computeProgress = local.computeProgress;
-      remote.fast = local.fast;
     }
     this.terminalInterface.updateState(this.state);
     this.uiInterval = setTimeout(this.updateUi, 1000);
@@ -130,8 +129,6 @@ export class App {
       this.compute.start().catch(err => {
         console.error(`Compute failed: `, err);
         this.compute = undefined;
-        // In case we were running fast code path, disable it. Maybe that was the issue.
-        delete process.env.FAST;
       });
     } else if (myRemoteState.state !== 'RUNNING' && this.compute) {
       this.compute.cancel();

@@ -100,6 +100,10 @@ export function appFactory(
     ctx.body = await server.getState(ctx.query.sequence);
   });
 
+  router.get('/state-summary', async (ctx: Koa.Context) => {
+    ctx.body = await server.getStateSummary();
+  });
+
   router.get('/state/load/:name', async (ctx: Koa.Context) => {
     ctx.body = await server.loadState(ctx.params.name);
   });

@@ -56,18 +56,15 @@ export class DiskTranscriptStore implements TranscriptStore {
   private initialParamsPath: string;
   private unverifiedPath: string;
   private verifiedPath: string;
-  private sealingPath: string;
   private fileRegex = /transcript(\d+).(dat|sig)$/;
 
   constructor(private storePath: string) {
     this.initialParamsPath = storePath + '/../../initial';
     this.verifiedPath = storePath + '/verified';
     this.unverifiedPath = storePath + '/unverified';
-    this.sealingPath = storePath + '/sealed';
     mkdirSync(this.initialParamsPath, { recursive: true });
     mkdirSync(this.verifiedPath, { recursive: true });
     mkdirSync(this.unverifiedPath, { recursive: true });
-    mkdirSync(this.sealingPath, { recursive: true });
   }
 
   public async save(address: Address, num: number, transcriptPath: string, signaturePath: string) {

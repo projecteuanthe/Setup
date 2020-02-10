@@ -21,6 +21,7 @@ describe('app', () => {
   beforeEach(() => {
     mockServer = {
       getState: jest.fn(),
+      getStateSummary: jest.fn(),
       resetState: jest.fn(),
       loadState: jest.fn(),
       patchState: jest.fn(),

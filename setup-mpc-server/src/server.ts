@@ -1,6 +1,15 @@
 import { Mutex } from 'async-mutex';
 import moment, { Moment } from 'moment';
-import { cloneMpcState, EthNet, MpcServer, MpcState, Participant, PatchState, ResetState } from 'setup-mpc-common';
+import {
+  cloneMpcState,
+  EthNet,
+  MpcServer,
+  MpcState,
+  Participant,
+  PatchState,
+  ResetState,
+  MpcStateSummary,
+} from 'setup-mpc-common';
 import { Address } from 'web3x/address';
 import { getGeoData } from './maxmind';
 import { ParticipantSelector, ParticipantSelectorFactory } from './participant-selector';
@@ -21,7 +30,6 @@ export class Server implements MpcServer {
   private mutex = new Mutex();
   private participantSelector?: ParticipantSelector;
   private store!: TranscriptStore;
-  private phase2Done = false;
 
   constructor(
     private storeFactory: TranscriptStoreFactory,
@@ -78,7 +86,7 @@ export class Server implements MpcServer {
       maxTier2: resetState.maxTier2,
       minParticipants: resetState.minParticipants,
       invalidateAfter: resetState.invalidateAfter,
-      participants: []
+      participants: [],
     };
 
     if (resetState.participants0.length) {
@@ -183,10 +191,7 @@ export class Server implements MpcServer {
   }
 
   private async createVerifier() {
-    const verifier = new Verifier(
-      this.store,
-      this.verifierCallback.bind(this)
-    );
+    const verifier = new Verifier(this.store, this.verifierCallback.bind(this));
     const lastCompleteParticipant = this.getLastCompleteParticipant();
     const runningParticipant = this.getRunningParticipant();
     verifier.lastCompleteAddress = lastCompleteParticipant && lastCompleteParticipant.address;
@@ -211,6 +216,24 @@ export class Server implements MpcServer {
         sequence === undefined
           ? this.readState.participants
           : this.readState.participants.filter(p => p.sequence > sequence),
+    };
+  }
+
+  public async getStateSummary(): Promise<MpcStateSummary> {
+    const { participants, ...rest } = this.readState;
+    const numParticipants = participants.length;
+    let completedParticipants = 0;
+    for (const participant of participants) {
+      completedParticipants += participant.state === 'COMPLETE' ? 1 : 0;
+    }
+    let ceremonyProgress = Math.min(99, (100 * completedParticipants) / this.readState.minParticipants);
+    if (this.readState.ceremonyState === 'COMPLETE') {
+      ceremonyProgress = 100;
+    }
+    return {
+      ...rest,
+      numParticipants,
+      ceremonyProgress,
     };
   }
 
@@ -267,15 +290,6 @@ export class Server implements MpcServer {
 
     try {
       await advanceState(this.state, this.store, this.verifier, moment());
-
-      if (this.state.ceremonyState === 'SEALING' && !this.phase2Done) {
-        this.state.ceremonyState = 'COMPLETE';
-        this.state.completedAt = moment();
-        this.state.sequence += 1;
-        this.state.statusSequence = this.state.sequence;
-        console.log('Completed');
-      }
-
     } catch (err) {
       console.log(err);
     } finally {
@@ -313,7 +327,7 @@ export class Server implements MpcServer {
   public async updateParticipant(participantData: Participant, admin: boolean = false) {
     const release = await this.mutex.acquire();
     try {
-      const { state, transcripts, address, runningState, computeProgress, invalidateAfter, fast } = participantData;
+      const { state, transcripts, address, runningState, computeProgress, invalidateAfter } = participantData;
       const p = admin ? this.getParticipant(address) : this.getAndAssertRunningParticipant(address);
       this.state.sequence += 1;
       p.sequence = this.state.sequence;
@@ -337,7 +351,6 @@ export class Server implements MpcServer {
             t.uploaded = transcripts[i].uploaded;
           });
         }
-        p.fast = fast;
         p.runningState = runningState;
         p.computeProgress = computeProgress;
         p.lastUpdate = moment();

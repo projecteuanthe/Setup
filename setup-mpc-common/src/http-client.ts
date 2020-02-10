@@ -8,8 +8,8 @@ import { Account } from 'web3x/account';
 import { Address } from 'web3x/address';
 import { bufferToHex } from 'web3x/utils';
 import { hashFiles } from './hash-files';
-import { MpcServer, MpcState, Participant, PatchState, ResetState } from './mpc-server';
-import { mpcStateFromJSON } from './mpc-state';
+import { MpcServer, MpcState, Participant, PatchState, ResetState, MpcStateSummary } from './mpc-server';
+import { mpcStateFromJSON, mpcStateSummaryFromJSON } from './mpc-state';
 
 export class HttpClient implements MpcServer {
   private opts: any = {
@@ -55,6 +55,17 @@ export class HttpClient implements MpcServer {
     return mpcStateFromJSON(json);
   }
 
+  public async getStateSummary(): Promise<MpcStateSummary> {
+    const url = new URL(`${this.apiUrl}/state_summary`);
+    const response = await fetch(url.toString(), this.opts);
+    if (response.status !== 200) {
+      throw new Error(`Bad status code from server: ${response.status}`);
+    }
+    const json = await response.json();
+
+    return mpcStateSummaryFromJSON(json);
+  }
+
   public async ping(address: Address) {
     if (!this.account) {
       throw new Error('No account provided. Can only request server state, not modify.');
@@ -76,14 +87,13 @@ export class HttpClient implements MpcServer {
     if (!this.account) {
       throw new Error('No account provided. Can only request server state, not modify.');
     }
-    const { transcripts, address, runningState, computeProgress, error, fast } = participant;
+    const { transcripts, address, runningState, computeProgress, error } = participant;
     const body = JSON.stringify({
       address: address.toString().toLowerCase(),
       runningState,
       computeProgress,
       transcripts,
       error,
-      fast,
     });
     const { signature } = this.account.sign(body);
     const response = await fetch(`${this.apiUrl}/participant/${address.toString().toLowerCase()}`, {
@@ -123,10 +133,7 @@ export class HttpClient implements MpcServer {
   }
 
   public async downloadInitialParams() {
-    const response = await fetch(
-      `${this.apiUrl}/initial_params`,
-      this.opts
-    );
+    const response = await fetch(`${this.apiUrl}/initial_params`, this.opts);
     if (response.status !== 200) {
       throw new Error(`Download initial params failed, bad status code: ${response.status}`);
     }

@@ -40,7 +40,6 @@ export class Server implements MpcServer {
   public async start() {
     // Take a copy of the state from the state store.
     const state = await this.stateStore.getState();
-    console.log(state);
     await this.resetWithState(state);
   }
 

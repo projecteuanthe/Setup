@@ -20,7 +20,6 @@ async function main() {
   process.once('SIGINT', shutdown);
   process.once('SIGTERM', shutdown);
 
-  console.log(ADMIN_ADDRESS);
   const adminAddress = Address.fromString(ADMIN_ADDRESS);
   const participantSelectorFactory = new ParticipantSelectorFactory(adminAddress, INFURA_API_KEY);
   const latestBlock = await participantSelectorFactory.getCurrentBlockHeight('ropsten');

@@ -70,8 +70,9 @@ export function appFactory(
   router.post('/reset', adminAuth, koaBody(), async (ctx: Koa.Context) => {
     const network = ctx.request.body.network || 'ropsten';
     const latestBlock = await participantSelectorFactory.getCurrentBlockHeight(network);
+    const { adminAddress: prevAdminAddress, ...rest } = defaultState(latestBlock, adminAddress);
     const resetState = {
-      ...defaultState(latestBlock),
+      ...rest,
       participants0: [],
       participants1: [],
       participants2: [],

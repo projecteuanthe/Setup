@@ -3,6 +3,7 @@ import moment from 'moment';
 import { MpcServer } from 'setup-mpc-common';
 import request from 'supertest';
 import { Account } from 'web3x/account';
+import { Address } from 'web3x/address';
 import { bufferToHex, hexToBuffer } from 'web3x/utils';
 import { appFactory } from './app';
 import { createParticipant } from './state/create-participant';
@@ -35,7 +36,7 @@ describe('app', () => {
       flushWaiting: jest.fn(),
     };
 
-    const state = defaultState(1234);
+    const state = defaultState(1234, Address.fromString('0x1aA18F5b595d87CC2C66d7b93367d8beabE203bB'));
     const participant = createParticipant(0, moment(), 0, 1, account.address);
     participant.state = 'RUNNING';
     state.participants.push(participant);

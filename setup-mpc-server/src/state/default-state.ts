@@ -1,9 +1,11 @@
 import moment = require('moment');
 import { MpcState } from 'setup-mpc-common';
+import { Address } from 'web3x/address';
 
-export function defaultState(latestBlock: number): MpcState {
+export function defaultState(latestBlock: number, adminAddress: Address): MpcState {
   return {
     name: 'default',
+    adminAddress,
     sequence: 0,
     statusSequence: 0,
     startSequence: 0,

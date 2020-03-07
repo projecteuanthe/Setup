@@ -40,6 +40,7 @@ export class Server implements MpcServer {
   public async start() {
     // Take a copy of the state from the state store.
     const state = await this.stateStore.getState();
+    console.log(state);
     await this.resetWithState(state);
   }
 
@@ -73,6 +74,7 @@ export class Server implements MpcServer {
     const nextSequence = this.state.sequence + 1;
     const state: MpcState = {
       name: await this.createUniqueCeremonyName(resetState.name),
+      adminAddress: this.state.adminAddress,
       sequence: nextSequence,
       statusSequence: nextSequence,
       startSequence: nextSequence,

@@ -8,17 +8,23 @@ import { DiskStateStore } from './state-store';
 import { defaultState } from './state/default-state';
 import { DiskTranscriptStoreFactory } from './transcript-store';
 
-const { PORT = 80, STORE_PATH = './store', INFURA_API_KEY = 'fe576c8bab174752bd0d963c89d5d7a2' } = process.env;
+const {
+  PORT = 80,
+  STORE_PATH = './store',
+  INFURA_API_KEY = 'fe576c8bab174752bd0d963c89d5d7a2',
+  ADMIN_ADDRESS = '0x1aA18F5b595d87CC2C66d7b93367d8beabE203bB',
+} = process.env;
 
 async function main() {
   const shutdown = async () => process.exit(0);
   process.once('SIGINT', shutdown);
   process.once('SIGTERM', shutdown);
 
-  const adminAddress = Address.fromString('0x1aA18F5b595d87CC2C66d7b93367d8beabE203bB');
+  console.log(ADMIN_ADDRESS);
+  const adminAddress = Address.fromString(ADMIN_ADDRESS);
   const participantSelectorFactory = new ParticipantSelectorFactory(adminAddress, INFURA_API_KEY);
   const latestBlock = await participantSelectorFactory.getCurrentBlockHeight('ropsten');
-  const defaults = defaultState(latestBlock);
+  const defaults = defaultState(latestBlock, adminAddress);
   const stateStore = new DiskStateStore(STORE_PATH + '/state', defaults);
   const transcriptStoreFactory = new DiskTranscriptStoreFactory(STORE_PATH);
 

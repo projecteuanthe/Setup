@@ -1,6 +1,7 @@
 import moment from 'moment';
 import { cloneMpcState, MpcState } from 'setup-mpc-common';
 import { Wallet } from 'web3x/wallet';
+import { Address } from 'web3x/address';
 import { TranscriptStore } from '../transcript-store';
 import { Verifier } from '../verifier';
 import { advanceState } from './advance-state';
@@ -18,7 +19,7 @@ describe('advance state', () => {
   const mockVerifier: Mockify<Partial<Verifier>> = {};
 
   beforeEach(() => {
-    state = defaultState(1234);
+    state = defaultState(1234, Address.fromString('0x1aA18F5b595d87CC2C66d7b93367d8beabE203bB'));
     state.startTime = moment(baseTime).add(5, 's');
     state.endTime = moment(baseTime).add(60, 's');
     state.participants = addresses.map((a, i) => createParticipant(0, moment(baseTime), i + 1, 1, a));

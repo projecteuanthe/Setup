@@ -2,6 +2,7 @@ import moment from 'moment';
 import { MpcState } from 'setup-mpc-common';
 import { hexToBuffer } from 'web3x/utils';
 import { Wallet } from 'web3x/wallet';
+import { Address } from 'web3x/address';
 import { createParticipant } from './create-participant';
 import { defaultState } from './default-state';
 import { orderWaitingParticipants } from './order-waiting-participants';
@@ -13,7 +14,7 @@ describe('select participants', () => {
   let state: MpcState;
 
   beforeEach(() => {
-    state = defaultState(1234);
+    state = defaultState(1234, Address.fromString('0x1aA18F5b595d87CC2C66d7b93367d8beabE203bB'));
     state.participants = addresses.map((a, i) => createParticipant(0, moment().add(i, 's'), i + 1, i < 5 ? 1 : 2, a));
   });
 

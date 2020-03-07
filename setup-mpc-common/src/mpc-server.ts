@@ -57,6 +57,7 @@ export type EthNet = 'mainnet' | 'ropsten';
 
 export interface MpcState {
   name: string;
+  adminAddress: Address;
   sequence: number;
   startSequence: number;
   statusSequence: number;

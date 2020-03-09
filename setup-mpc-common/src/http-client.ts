@@ -133,7 +133,7 @@ export class HttpClient implements MpcServer {
   }
 
   public async downloadInitialParams() {
-    const response = await fetch(`${this.apiUrl}/initial_params`, this.opts);
+    const response = await fetch(`${this.apiUrl}/data/initial_params`, this.opts);
     if (response.status !== 200) {
       throw new Error(`Download initial params failed, bad status code: ${response.status}`);
     }

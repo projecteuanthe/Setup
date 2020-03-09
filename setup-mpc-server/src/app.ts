@@ -166,7 +166,7 @@ export function appFactory(
     ctx.body = await server.downloadData(Address.fromString(address.toLowerCase()), num);
   });
 
-  router.get('/initial_params', async (ctx: Koa.Context) => {
+  router.get('/data/initial_params', async (ctx: Koa.Context) => {
     ctx.body = await server.downloadInitialParams();
   });
 

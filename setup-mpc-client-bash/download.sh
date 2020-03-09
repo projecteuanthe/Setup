@@ -1,13 +1,13 @@
 #!/bin/bash
-set -e
+if [[ -z "$API_URL" ]]; then
+  echo "USAGE: API_URL=<URL> PREV_ADDRESS=<0xPREVIOUS_ADDRESS> ./download.sh"
+  exit 1
+fi
 
-: ${API_URL=https://ignition.aztecprotocol.com}
-: ${TRANSCRIPTS=20}
-: ${SETUP_DIR=$(pwd)/setup_db}
+if [[ -z "$PREV_ADDRESS" ]]; then
+  echo "USAGE: API_URL=<URL> PREV_ADDRESS=<0xPREVIOUS_ADDRESS> ./download.sh"
+  exit 1
+fi
 
-mkdir -p $SETUP_DIR
-rm -f $SETUP_DIR/*
-for TRANSCRIPT in $(seq 0 $[TRANSCRIPTS - 1]); do
-  echo Downloading transcript $PREV_ADDRESS/$TRANSCRIPT...
-  curl -s -S $API_URL/api/data/$PREV_ADDRESS/$TRANSCRIPT > $SETUP_DIR/transcript$TRANSCRIPT.dat
-done
+echo Downloading latest contribution from $PREV_ADDRESS...
+curl -s -S $API_URL/api/data/$PREV_ADDRESS/0 > params.params

@@ -79,10 +79,12 @@ export class Verifier {
     return new Promise<boolean>(resolve => {
       // call verify_contribution if this is not the first transcript
       const args = [
-        process.env.SMALL ? 'initial/circuit_small.json' : 'initial/circuit.json',
-        this.lastCompleteAddress ? this.store.getVerifiedTranscriptPath(this.lastCompleteAddress, 0) : this.store.getInitialParametersPath(),
+        'initial/circuit.json',
+        this.lastCompleteAddress
+          ? this.store.getVerifiedTranscriptPath(this.lastCompleteAddress, 0)
+          : this.store.getInitialParametersPath(),
         this.store.getUnverifiedTranscriptPath(address, 0),
-        'initial'
+        'initial',
       ];
       const binPath = '../setup-tools/verify_contribution';
       const verify = spawn(binPath, args);

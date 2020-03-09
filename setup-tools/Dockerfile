@@ -16,15 +16,15 @@ WORKDIR /usr/src/setup-tools
 ENV PATH="/root/.cargo/bin:$PATH"
 COPY . .
 RUN cd phase2-bn254/phase2 \
-    && cargo build --bin new \
-    && cargo build --bin contribute \
-    && cargo build --bin verify_contribution \
-    && cargo build --bin beacon \
-    && cargo build --bin export_keys \
+    && cargo build --release --bin new \
+    && cargo build --release --bin contribute \
+    && cargo build --release --bin verify_contribution \
+    && cargo build --release --bin beacon \
+    && cargo build --release --bin export_keys \
     && cd ../../ \
-    && cp /usr/src/setup-tools/phase2-bn254/phase2/target/debug/new . \
-    && cp /usr/src/setup-tools/phase2-bn254/phase2/target/debug/contribute . \
-    && cp /usr/src/setup-tools/phase2-bn254/phase2/target/debug/verify_contribution . \
-    && cp /usr/src/setup-tools/phase2-bn254/phase2/target/debug/beacon . \
-    && cp /usr/src/setup-tools/phase2-bn254/phase2/target/debug/export_keys . \
+    && cp /usr/src/setup-tools/phase2-bn254/phase2/release/debug/new . \
+    && cp /usr/src/setup-tools/phase2-bn254/phase2/release/debug/contribute . \
+    && cp /usr/src/setup-tools/phase2-bn254/phase2/release/debug/verify_contribution . \
+    && cp /usr/src/setup-tools/phase2-bn254/phase2/release/debug/beacon . \
+    && cp /usr/src/setup-tools/phase2-bn254/phase2/release/debug/export_keys . \
     && rm -rf phase2-bn254

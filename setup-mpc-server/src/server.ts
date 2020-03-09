@@ -393,6 +393,11 @@ export class Server implements MpcServer {
 
     await this.store.save(address, transcriptNumber, transcriptPath, signaturePath);
     p.transcripts[transcriptNumber].state = 'VERIFYING';
+    if (p.runningState === 'OFFLINE') {
+      // we know that this participant has uploaded and downloaded the transcript file!
+      p.transcripts[transcriptNumber].downloaded = p.transcripts[transcriptNumber].size;
+      p.transcripts[transcriptNumber].uploaded = p.transcripts[transcriptNumber].size;
+    }
     this.verifier.put({ address, num: transcriptNumber });
   }
 

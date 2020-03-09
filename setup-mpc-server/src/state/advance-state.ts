@@ -39,6 +39,7 @@ export async function advanceState(state: MpcState, store: TranscriptStore, veri
   if (runningParticipant) {
     const { startedAt, tier, lastVerified } = runningParticipant;
     const completeWithin = runningParticipant.invalidateAfter || invalidateAfter;
+    // TODO: not sure if 2 is enough? Verify is veryyyy slow
     const verifyWithin = 2 * completeWithin;
     if (
       moment(now)

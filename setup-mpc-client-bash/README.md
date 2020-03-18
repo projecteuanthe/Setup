@@ -1,9 +1,10 @@
 # Run a client (custom / extra security)
+\[Copied from the participant guide\]
+
 If you'd like to have a little more control over how you contribute to the ceremony, you can contribute in OFFLINE/CUSTOM mode. You'll still have to run an "empty" client that signals to the server that you're indeed in the process of contributing (else the server will skip over you - see "Notes" in the [participant guide](/setup-mpc-client)), but the actual work of generating the contribution can be done by yourself.
 
 To run the client in OFFLINE mode:
 ```
-cd setup-mpc-client
 API_URL=<ceremony url> PRIVATE_KEY=<0x...> COMPUTE_OFFLINE=1 ./run-client.sh
 ```
 This above command starts an "empty" client that tells the server not to skip over your turn. Note that the only difference is passing in the `COMPUTE_OFFLINE` variable.
@@ -19,7 +20,6 @@ We have provided scripts for all three of these operations in `setup-mpc-client-
 
 ### Download
 ```
-cd setup-mpc-client-bash
 API_URL=<ceremony url> PREV_ADDRESS=<0x...> ./download.sh
 ```
 Note that you'll need to refer to the interface of your empty client to get the address of the most recent ceremony participant, `PREV_ADDRESS`. This writes to a file `params.params` in your current directory.

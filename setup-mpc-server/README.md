@@ -1,5 +1,5 @@
 # zkparty MPC Coordinator Guide
-**All of this code is highly experimental and has not been audited. Use at your own risk.**
+**All of this code is highly experimental and has not been audited. Use at your own risk.** [Hackmd link](https://hackmd.io/@bgu33/H1ndttIBL)
 
 This set of tools allows you to run a trusted setup ceremony for zkSNARKs. We are using a fork of AZTEC's trusted setup repository.
 

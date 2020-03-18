@@ -8,7 +8,9 @@ This repository contains several tools to help coordinators of trusted SNARK set
 - [setup-mpc-client-bash](/setup-mpc-client-bash) - Utility scripts for clients wanting more fine-grained control over their contribution process.
 - [setup-mpc-common](/setup-mpc-common) - Shared code between server and client applications (i.e. common TS interfaces).
 
-We will write up instructions in `setup-mpc-server` for coordinators. At a high level, running an MPC should just require you to swap in your own `circuit.json`, run a build script, and publish docker images for participants.
+Instructions for ceremony coordinators are in [setup-mpc-server](/setup-mpc-server).
+
+Instructions for ceremony participants are in [setup-mpc-client](/setup-mpc-client).
 
 We are also working on a webapp (zkparty.io) that can serve as a portal to different ceremonies + host attestations of participants and transcript files from any ceremonies run with this tool chain.
 

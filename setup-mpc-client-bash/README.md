@@ -1,38 +1,39 @@
-# setup-mpc-client-bash
+# Run a client (custom / extra security)
+If you'd like to have a little more control over how you contribute to the ceremony, you can contribute in OFFLINE/CUSTOM mode. You'll still have to run an "empty" client that signals to the server that you're indeed in the process of contributing (else the server will skip over you - see "Notes" in the [participant guide](/setup-mpc-client)), but the actual work of generating the contribution can be done by yourself.
 
-This project contains a few bash scripts which can be used as a reference as to how to interact with the coordination server.
-
-## Requirements
-
-- You need to be running [setup-mpc-client](../setup-mpc-client) with the environment variable `COMPUTE_OFFLINE=1`.
-- You need to be running an ETH node such as ganache configured with the account that you will use to verify with the server.
-
-## Usage
-
-There are a few environment variables that must/can be specified to perform the computation.
-
-- `ADDRESS`: (required) The address to use to sign the transcripts for upload to the server.
-- `PREV_ADDRESS`: (required) The address of the previous participant to build upon.
-- `ETH_URL`: (default: http://localhost:8545) The URL of ganache configured with the signing account.
-- `API_URL`: (default: https://ignition.aztecprotocol.com) The URL of the coordination server.
-- `TRANSCRIPTS`: (default: 20) The number of transcripts files.
-- `SETUP_DIR`: (default: ./setup_db) The working directory for the transcript files.
-
-Example:
-
+To run the client in OFFLINE mode:
 ```
-PREV_ADDRESS=0x6Bd7Ea43FB9E05F551ad4128dD8E412B15B6a770 ADDRESS=0xD528f97aeB2297007f9348B295ee2D475918D517 ./compute.sh
+cd setup-mpc-client
+API_URL=<ceremony url> PRIVATE_KEY=<0x...> COMPUTE_OFFLINE=1 ./run-client.sh
 ```
+This above command starts an "empty" client that tells the server not to skip over your turn. Note that the only difference is passing in the `COMPUTE_OFFLINE` variable.
 
-This will download 20 transcript files from the previous participant, perform the computation, sign the files and upload them.
+If you're running your client in this mode, the following is your responsibility to do manually:
+- Grab the most recent parameter set, from the last completed participant
+- Run contribution binaries to contribute your entropy to the parameter set
+- Upload your new parameter set to the server
 
-## I'm air-gapped / Using my own implementation
+Note that download, computation, and upload can be run from ANY machine, completely independent of the empty client you are running. The only constraint is that your upload must be signed with the private key you've registered for the ceremony with.
 
-Then you will have generated your own sequence of transcript files. You can use the `./upload.sh` script to upload them.
-The files will have to be named in the format `transcript0_out.dat`, `transcript1_out.dat`, etc, and be located in `SETUP_DIR`.
+We have provided scripts for all three of these operations in `setup-mpc-client-bash`. Here's how to use them:
 
-Example:
-
+### Download
 ```
-ADDRESS=0xD528f97aeB2297007f9348B295ee2D475918D517 ./upload.sh
+cd setup-mpc-client-bash
+API_URL=<ceremony url> PREV_ADDRESS=<0x...> ./download.sh
 ```
+Note that you'll need to refer to the interface of your empty client to get the address of the most recent ceremony participant, `PREV_ADDRESS`. This writes to a file `params.params` in your current directory.
+
+### Contribute
+```
+contribute <in_params_filename> <entropy_str> <out_params_filename> <optional 1000>
+```
+The `contribute` program is compiled from Kobi Gurkan's MPC contribution [Rust library](https://github.com/kobigurk/phase2-bn254/tree/master/phase2). The last parameter is optional; put `1000` as the fourth argument if you'd like to print progress reports on the computation to terminal.
+
+**This is the trusted step.** Security-minded participants may want to perform this step on an air-gapped computer with an exotic source of entropy.
+
+### Upload
+```
+API_URL=<ceremony url> PARAMS_PATH=</path/to/params> PRIVATE_KEY=<0x...> ./sign_and_upload.sh
+```
+Signs and uploads the parameters you generated.

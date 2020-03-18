@@ -84,7 +84,7 @@ export class Verifier {
           ? this.store.getVerifiedTranscriptPath(this.lastCompleteAddress, 0)
           : this.store.getInitialParametersPath(),
         this.store.getUnverifiedTranscriptPath(address, 0),
-        'initial',
+        'initial/radix',
       ];
       const binPath = '../setup-tools/verify_contribution';
       const verify = spawn(binPath, args);

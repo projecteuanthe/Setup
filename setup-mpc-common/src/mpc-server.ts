@@ -105,7 +105,7 @@ export interface ResetState {
 }
 
 export interface PatchState {
-  paused: boolean;
+  paused?: boolean;
   startTime?: Moment;
   endTime?: Moment;
   selectBlock?: number;

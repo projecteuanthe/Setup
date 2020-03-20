@@ -1,3 +1,3 @@
 [submodule "setup-tools/phase2-bn254"]
 	path = setup-tools/phase2-bn254
-	url = git@github.com:briangu33/phase2-bn254.git
+	url = https://github.com/briangu33/phase2-bn254.git

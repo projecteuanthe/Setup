@@ -38,7 +38,7 @@ async function main() {
 
   const httpServer = http.createServer(app.callback());
   httpServer.listen(PORT);
-  console.log(`Server listening on port ${PORT}.`);
+  console.log(`Server listening.`);
 }
 
 main().catch(console.log);

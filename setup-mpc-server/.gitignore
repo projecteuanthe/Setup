@@ -1,4 +1,5 @@
 store
 initial/circuit.json
 initial/initial_params
-initial/radix/
+initial/radix/*
+!initial/radix/phase1radix2m9_example

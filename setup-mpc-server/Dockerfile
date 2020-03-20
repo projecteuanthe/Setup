@@ -7,5 +7,5 @@ RUN ../setup-tools/new ./initial/circuit.json ./initial/initial_params ./initial
   && yarn link "setup-mpc-common" \
   && yarn install \
   && yarn test \
-  && yarn build \
+  && yarn build
 CMD [ "node", "./dest"]

@@ -17,7 +17,7 @@ class ComputeProcess extends EventEmitter {
   public startContribute() {
     const binPath = '../setup-tools/contribute';
     console.error(`Computing with: ${binPath}`);
-    const proc = spawn(binPath, ['../setup_db/old/params.params', '', '../setup_db/new/params.params', '100']);
+    const proc = spawn(binPath, ['../setup_db/old/params.params', '../setup_db/new/params.params', '', '-v', '100']);
     this.proc = proc;
     this.setupListeners();
   }

@@ -48,7 +48,7 @@ export async function advanceState(state: MpcState, store: TranscriptStore, veri
       (tier > 1 &&
         moment(now)
           .subtract(verifyWithin, 's')
-          .isAfter(lastVerified || startedAt!))
+          .isAfter(lastVerified || startedAt!)) // lastVerified is meaningless right now, so this second check doesn't do anything
     ) {
       runningParticipant.sequence = nextSequence;
       runningParticipant.state = 'INVALIDATED';

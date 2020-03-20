@@ -20,5 +20,5 @@ if [[ $* == *--clear-state* ]]; then
 fi
 
 # first command mounts a volume; second does not
-# docker run --mount 'type=volume,src='"$VOLUME"',dst=/usr/src/setup-mpc-server/store' -p "$PORT":80 -e ADMIN_ADDRESS="$ADMIN_ADDRESS" setup-mpc-server:latest
-docker run -p "$PORT":80 -e ADMIN_ADDRESS="$ADMIN_ADDRESS" setup-mpc-server:latest
+docker run --mount 'type=volume,src='"$VOLUME"',dst=/usr/src/setup-mpc-server/store' -p "$PORT":80 -e ADMIN_ADDRESS="$ADMIN_ADDRESS" setup-mpc-server:latest
+# docker run -p "$PORT":80 -e ADMIN_ADDRESS="$ADMIN_ADDRESS" setup-mpc-server:latest

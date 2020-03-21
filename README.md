@@ -1,6 +1,6 @@
 # Trusted Setup MPC Tools
 
-This repository contains several tools to help coordinators of trusted SNARK setup multi-party computation. It is a modification of the AZTEC Ignition [Setup repository](https://github.com/AztecProtocol/Setup/).
+This repository contains several tools to help coordinators of trusted SNARK setup multi-party computation. It is based on the AZTEC [Ignition Ceremony](https://github.com/AztecProtocol/Setup/).
 
 - [setup-tools](/setup-tools) - Codebase of the actual computation code, verification code etc. These are taken from Kobi Gurkan's [phase2](https://github.com/kobigurk/phase2-bn254) repository, which itself is a modified version of the ZCash team's phase2 code.
 - [setup-mpc-server](/setup-mpc-server) - Coordination server for participants partaking in the MPC.

@@ -20,8 +20,7 @@ export class TerminalInterface {
   private render() {
     this.term.clear();
     this.term.hideCursor();
-    this.term.cyan('AZTEC Trusted Setup Multi Party Computation\n');
-    this.term.white('MODIFIED FOR PHASE2 CEREMONY\n\n');
+    this.term.cyan('Semaphore Phase 2 Trusted Setup Multi Party Computation\n');
     this.renderStatus();
     this.renderList();
   }
@@ -282,14 +281,18 @@ export class TerminalInterface {
 
     const { invalidateAfter } = this.state!;
     const completeWithin = p.invalidateAfter || invalidateAfter;
-    // TODO: should be set in MPC state
-    const verifyWithin = 1000;
+
+    // TODO: verifyWithin will be used if we are splitting parameter files into chunks
+    /*
+    const verifyWithin = 2 * completeWithin;
     const verifyTimeout = Math.max(
       0,
       moment(p.lastVerified || p.startedAt!)
         .add(verifyWithin, 's')
         .diff(moment(), 's')
     );
+    */
+
     const timeout = Math.max(
       0,
       moment(p.startedAt!)
@@ -299,9 +302,12 @@ export class TerminalInterface {
 
     term.white(` (`).blue('\u25b6\ufe0e\u25b6\ufe0e ');
 
+    /*
     if (p.tier > 1) {
       term.white(`${verifyTimeout}/`);
     }
+    */
+
     term.white(`${timeout}s)`);
   }
 

@@ -128,7 +128,11 @@ export function appFactory(
 
   router.put('/participant/:address', adminAuth, async (ctx: Koa.Context) => {
     const address = Address.fromString(ctx.params.address.toLowerCase());
-    server.addParticipant(address, +ctx.query.tier || 2);
+    let tier = 2;
+    if (ctx.query.tier === '0' || ctx.query.tier === '1' || ctx.query.tier === '2' || ctx.query.tier === '3') {
+      tier = +ctx.query.tier;
+    }
+    server.addParticipant(address, tier);
     ctx.status = 204;
   });
 

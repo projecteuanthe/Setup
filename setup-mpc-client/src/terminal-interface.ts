@@ -21,6 +21,7 @@ export class TerminalInterface {
     this.term.clear();
     this.term.hideCursor();
     this.term.cyan('Semaphore Phase 2 Trusted Setup Multi Party Computation\n');
+    this.term.cyan('Written by AZTEC Ignition Ceremony team, modified for use by Semaphore');
     this.renderStatus();
     this.renderList();
   }
